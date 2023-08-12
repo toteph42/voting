@@ -1,0 +1,14 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="MOD.voting.0">
+        <source>Votings</source>
+        <target>Umfragen</target>
+      </trans-unit>
+      <trans-unit id="MOD.voting.1">
+        <source>Manage the voting and their options.</source>
+        <target>Umfragen und deren Optionen verwalten.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
