@@ -42,13 +42,13 @@
 				<form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" method="post">
 					<div class="formbody">
 						<input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
-						<input type="hidden" name="REQUEST_TOKEN" value="{<? $this->voteNow ?>">
+						<input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 						<div class="widget widget-checkbox">
 							<?php echo $this->options->generateWithError(); ?>
 						</div>
 						<div class="widget widget-submit submit_container">
 							<?php if ($this->submit): ?>
-	 							<input type="submit" class="voting vote_link" value="<?php echo $this->submit; ?>">
+	 							<input type="submit" class="voting vote_link" value="<?php echo $this->voteNow; ?>">
 							<?php endif; ?>
 							<div class="voting result_link">
 								<?php echo $this->resultsLink; ?>
