@@ -7,7 +7,9 @@
 <!-- indexer::stop -->
 <div class="voting">
 	<div id="voting<?php echo $this->id; ?>" class="voting <?php echo $this->cssTyp; ?>">
-		<p class="voting title"><?php echo $this->title; ?></p>
+		<?php if ($this->title): ?>
+			<p class="voting title"><?php echo $this->title; ?></p>
+		<?php endif; ?>
 		<?php if ($this->message): ?>
 			<p class="voting <?php echo $this->cssMsg; ?>"><?php echo $this->message; ?></p>
 		<?php endif; ?>
