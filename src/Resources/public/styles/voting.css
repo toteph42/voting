@@ -27,10 +27,12 @@ $Grey: #F8F8F8;
 }
 /* Protected voting container */
 .voting .protected {
+	padding: 10px;
 	background-color: #FFFFFF;
 }
 /* Closed voting container */
 .voting .closed {
+	padding: 10px;
 	background-color: #F8F8F8;
 }
 /* Voting title */
@@ -63,9 +65,8 @@ $Grey: #F8F8F8;
 	padding-top: 3px;
 	font-size: 12px;
 }
-/* Result */
+/* Result line */
 .voting .result {
-	display: flex;
 }
 /* Result title */
 .voting .result_title {
