@@ -142,7 +142,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 				$template->formLink = '';
 
 				// Display the form link
-				if ($ena && !$voting)
+				if ($ena)
 					$template->formLink = sprintf('<a href="%s" class="vote_link" title="%s">%s</a>',
 											 $this->generatevotingUrl('voting'), specialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
 											 $GLOBALS['TL_LANG']['MSC']['showForm']);

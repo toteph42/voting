@@ -54,10 +54,9 @@
 						</div>
 					</div>
 				</form>
-			</div>
-		<?php else: ?>
-			<div class="voting back_link">
-				{{link::back}}
+				<div class="voting back_link">
+					{{link::back}}
+				</div>
 			</div>
 		<?php endif; ?>
 	</div>
