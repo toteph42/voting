@@ -1,0 +1,45 @@
+{
+	"name" : "toteph42/voting",
+	"type" : "contao-bundle",
+	"description" : "Create polls and votings for Contao Open Source CMS",
+	"license" : "GPL-3.0+",
+	"homepage" : "https://github.com/toteph42/voting",
+	"authors" : [{
+			"name" : "Florian Daeumling",
+			"homepage" : "https://github.com/toteph42",
+      		 "role":"Developer"
+	    },
+	    {
+            "name": "Codefog",
+            "homepage": "http://codefog.pl",
+      		"role":"Developer"
+		}
+	],
+	"keywords" : [
+		"poll",
+		"polls",
+		"vote",
+		"voting",
+		"contao"
+	],
+	"require" : {
+		"php" : ">=7.0",
+		"contao/core-bundle" : ">=4.9.0"
+	},
+	"conflict" : {
+		"contao/manager-plugin" : "<2.0 || >=3.0"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Toteph42\\VotingBundle\\" : "src/"
+		}
+	},
+	"extra" : {
+		"contao-manager-plugin" : "Toteph42\\VotingBundle\\ContaoManager\\Plugin"
+	},
+	"support" : {
+		"issues" : "https://github.com/toteph42/voting/issues",
+		"source" : "https://github.com/toteph42/voting",
+		"docs": "https://github.com/toteph42/voting"
+	}
+}

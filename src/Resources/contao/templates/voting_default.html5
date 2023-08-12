@@ -1,0 +1,67 @@
+<?php
+    
+    $p = 'bundles/voting/styles/';
+	$GLOBALS['TL_CSS'][] = $p.(file_exists($p.'_custom.css') ? '_custom' : 'voting').'.css|static'; 
+
+?>
+<!-- indexer::stop -->
+<div class="voting">
+	<div id="voting<?php echo $this->id; ?>" class="voting <?php echo $this->cssTyp; ?>">
+		<p class="voting title"><?php echo $this->title; ?></p>
+		<?php if ($this->message): ?>
+			<p class="voting <?php echo $this->cssMsg; ?>"><?php echo $this->message; ?></p>
+		<?php endif; ?>
+		<?php if ($this->showResults): ?>
+			<div class="voting results">
+				<ul >
+					<?php foreach ($this->results as $result): ?>
+						<li>
+							<div class="voting result_bar" style="width:<?php echo $result['prcnt'] * 4 + 30; ?>px">
+								<?php echo $result['prcnt'] ?>%&nbsp;&nbsp;
+							</div>
+							<div class="voting result">
+								<div class="voting result_title">
+									<?php echo $result['title']; ?> 
+								</div>
+								<div class="voting result_count">&nbsp;[&nbsp;
+									<?php if (isset($result['outof'])): ?>
+										<?php echo $result['outof']; ?>
+									<?php else: ?>
+										<?php echo $result['voting']; ?>
+									<?php endif; ?>&nbsp;]
+								</div>
+							</div>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+				<?php echo $this->formLink; ?>
+			</div>
+		<?php endif; ?>
+		<?php if ($this->showForm): ?>
+			<div class="form">
+				<form action="<?php echo $this->action; ?>" id="<?php echo $this->formId; ?>" method="post">
+					<div class="formbody">
+						<input type="hidden" name="FORM_SUBMIT" value="<?php echo $this->formId; ?>">
+						<input type="hidden" name="REQUEST_TOKEN" value="{<? $this->voteNow ?>">
+						<div class="widget widget-checkbox">
+							<?php echo $this->options->generateWithError(); ?>
+						</div>
+						<div class="widget widget-submit submit_container">
+							<?php if ($this->submit): ?>
+	 							<input type="submit" class="voting vote_link" value="<?php echo $this->submit; ?>">
+							<?php endif; ?>
+							<div class="voting result_link">
+								<?php echo $this->resultsLink; ?>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		<?php else: ?>
+			<div class="voting back_link">
+				{{link::back}}
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+<!-- indexer::continue -->
