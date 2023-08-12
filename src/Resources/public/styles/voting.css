@@ -48,17 +48,15 @@ $Grey: #F8F8F8;
 	padding: 10px;
 	border-color: #69BF44;
 }
-/* Single result */
-.voting li {
-	list-style: none;
-	display: flex;
-}
+/* Result block */
+.voting .results {
+}	
 /* Result bar */
 .voting .result_bar {
 	display: inline-block;
 	color: white;
 	margin-right: 8px;
-	background-color: #69BF44;
+	background-color: #1744CD;
 	height: 19px;
 	line-height: 14px;
 	text-align: right;
@@ -79,22 +77,23 @@ $Grey: #F8F8F8;
 .voting .result_count {
 	font-size: initial;
 	color: #A3CC00;
-	display: ruby-text;
 	text-align: left;
 }
 /* Vote now button */
-.voting .vote_link, 
+.voting .vote_link,
 /* Link to vote results */
-.voting .result_link,
+.voting .result_link:active,
 /* Go back link */
-.voting .back_link {
+.voting .back_link:active {
 	background-color: white;
 	color: #69BF44
- }
-.voting .vote_link:hover, 
+}
+.voting .vote_link:hover,
+.voting .back_link:hover,
 .voting .result_link:hover,
-.voting .back_link:hover {
+.voting .back_link a:hover {
  	background-color: #69BF44;
  	color: white;
    	text-decoration: none;
+   	padding-left: 2px;
 }

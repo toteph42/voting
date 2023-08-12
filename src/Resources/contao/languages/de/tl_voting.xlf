@@ -47,7 +47,7 @@
       </trans-unit>
       <trans-unit id="tl_voting.protected.1">
         <source>Only the logged in users will be able to voting.</source>
-        <target>'Nur eingeloggte Benutzer dürfen abstimmen.'</target>
+        <target>Nur eingeloggte Benutzer dürfen abstimmen.</target>
       </trans-unit>
       <trans-unit id="tl_voting.featured.0">
         <source>Feature voting</source>
