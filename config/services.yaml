@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+        public: true
+        
+    Toteph42\VotingBundle\Controller\ContentElement\VotingIncludeElement:
+        tags:
+            -
+                name: contao.content_element
+                category: includes
+                type: voting
+                template: ce_voting
+                renderer: forward
+                method: __invoke
+             

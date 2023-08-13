@@ -1,3 +1,12 @@
-# PHPStorm
-.idea
-composer.lock
+# Composer
+/composer.lock
+/vendor/
+
+# Git
+/.gitignore
+
+# Eclipse
+/.settings/
+/.editorconfig
+/.project
+/.buildpath

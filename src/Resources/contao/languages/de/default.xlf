@@ -1,0 +1,46 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/src/Resources/contao/languages/en/default.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="CTE.voting.0">
+        <source>Voting</source>
+        <target>Umfrage</target>
+      </trans-unit>
+      <trans-unit id="CTE.voting.1">
+        <source>Displays a voting.</source>
+        <target>Zeigt eine Umfrage an.</target>
+      </trans-unit>
+      <trans-unit id="MSC.outof">
+        <source>out of</source>
+        <target>von</target>
+      </trans-unit>
+      <trans-unit id="MSC.votes">
+        <source>vote(s)</source>
+        <target>Stimme(n)</target>
+      </trans-unit>
+      <trans-unit id="MSC.loginTovoting">
+        <source>Please log in to enable voting.</source>
+        <target>Bitte loggen Sie sich ein, um abzustimmen zu können.</target>
+      </trans-unit>
+      <trans-unit id="MSC.voteNow">
+        <source>Vote now</source>
+        <target>Abstimmen</target>
+      </trans-unit>
+      <trans-unit id="MSC.showResults">
+        <source>Show results</source>
+        <target>Ergebnisse anzeigen</target>
+      </trans-unit>
+      <trans-unit id="MSC.showForm">
+        <source>Go to voting</source>
+        <target>Zur Umfrage</target>
+      </trans-unit>
+      <trans-unit id="MSC.votingSubmitted">
+        <source>Thanks for voting!</source>
+        <target>Danke für Ihre Stimme!</target>
+      </trans-unit>
+      <trans-unit id="MSC.votingClosed">
+        <source>This voting is closed.</source>
+        <target>Umfrage ist geschlossen.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

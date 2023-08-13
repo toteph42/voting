@@ -1,0 +1,38 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_voting_results.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_voting_results.tstamp">
+        <source>Date votingd</source>
+        <target>Datum der Stimme</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.ip">
+        <source>IP address</source>
+        <target>IP-Addresse</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.member">
+        <source>Member</source>
+        <target>Mitglied</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.anonymous">
+        <source><span style="color:#b3b3b3;">(anonymous)</span></source>
+        <target><span style="color:#b3b3b3;">(anonym)</span></target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.delete.0">
+        <source>Delete voting</source>
+        <target>Stimme löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.delete.1">
+        <source>Delete voting ID %s.</source>
+        <target>Stimme mit ID %s löschen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.show.0">
+        <source>voting details</source>
+        <target>Details der Stimme</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_results.show.1">
+        <source>Show the details of voting ID %s.</source>
+        <target>Details der Stimme mit ID %s anzeigen.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
