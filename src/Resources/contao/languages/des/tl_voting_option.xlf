@@ -1,0 +1,118 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="src/Resources/contao/languages/en/tl_voting_option.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_voting_option.title.0">
+        <source>Title</source>
+        <target>Titel</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.title.1">
+        <source>Please enter the option title.</source>
+        <target>Bitte geben Sie den Titel der Option ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.published.0">
+        <source>Publish option</source>
+        <target>Option veröffentlichen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.published.1">
+        <source>Make the option publicly visible on the website.</source>
+        <target>Option auf der Web-Seite veröffentlichen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.title_legend">
+        <source>Title and voting</source>
+        <target>Titel und Stimmen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.votingSingle">
+        <source>%s voting</source>
+        <target>%s Stimme</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.votingPlural">
+        <source>%s vote(s)</source>
+        <target>%s Stimmen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.new.0">
+        <source>New option</source>
+        <target>Neue Option</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.new.1">
+        <source>Create a new option.</source>
+        <target>Eine neue Option anlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.edit.0">
+        <source>Edit option</source>
+        <target>Option bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.edit.1">
+        <source>Edit option ID %s.</source>
+        <target>Option mit ID %s bearbeiten.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.editheader.0">
+        <source>Edit voting settings</source>
+        <target>Umfrage-Einstellungen bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.editheader.1">
+        <source>Edit the settings of voting ID %s.</source>
+        <target>Einstellungen der Umfrage mit ID %s bearbeiten.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.copy.0">
+        <source>Duplicate option</source>
+        <target>Option duplizieren</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.copy.1">
+        <source>Duplicate option ID %s.</source>
+        <target>Option mit ID %s duplizieren.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.delete.0">
+        <source>Delete option ID %s</source>
+        <target>Option löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.delete.1">
+        <source>Delete option ID %s.</source>
+        <target>Option mit ID %s löschen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.show.0">
+        <source>Option details</source>
+        <target>Einzelheiten der Option</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.show.1">
+        <source>Show the details of option ID %s.</source>
+        <target>Details von Option mit ID %s anzeigen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.toggle.0">
+        <source>Publish/unpublish option</source>
+        <target>Option veröffentlichen/verstecken</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.toggle.1">
+        <source>Publish/unpublish option ID %s.</source>
+        <target>Option mit ID %s veröffentlichen bzw. verstecken.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.voting.0">
+        <source>View voting</source>
+        <target>Stimmen anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.voting.1">
+        <source>View voting for option ID %s.</source>
+        <target>Stimmen der Option mit ID %s anzeigen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.pastenew.0">
+        <source>Add new at the top</source>
+        <target>Neue Option anlegen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.pastenew.1">
+        <source>Add new after option ID %s.</source>
+        <target>Eine neue Option nach dieser Option mit ID %s anlegen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.reset.0">
+        <source>Reset voting</source>
+        <target>Zurücksetzen</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.reset.1">
+        <source>Reset voting and purge all voting.</source>
+        <target>Zurücksetzen und löschen aller Stimmen.</target>
+      </trans-unit>
+      <trans-unit id="tl_voting_option.reset.2">
+        <source>Reset voting and purge all voting', 'Are you sure you want to reset the voting and purge all voting? This cannot be undone!</source>
+        <target>Sind Sie sicher die Abstimmungzurück zu setzen und alle Stimmen zu verlieren? Dies kann nicht wieder zurück genommen werden!</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

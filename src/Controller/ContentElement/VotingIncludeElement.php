@@ -46,12 +46,12 @@ class VotingIncludeElement extends AbstractContentElementController {
 
 			if ($this->obj->numRows && $this->obj->options) {
 
-				// default is not to show anything
-				$show = false;
 				$template = new FrontendTemplate('voting_default');
 				$template->setData($this->obj->row());
 			}
 
+			// default is not to show anything
+			$show = false;
 			$template->cssTyp = 'standard';
 			$template->cssMsg = '';
 			$template->message = '';
@@ -144,7 +144,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 				// Display the form link
 				if ($ena)
 					$template->formLink = sprintf('<a href="%s" class="vote_link" title="%s">%s</a>',
-											 $this->generatevotingUrl('voting'), specialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
+											 $this->generateVotingUrl('voting'), specialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
 											 $GLOBALS['TL_LANG']['MSC']['showForm']);
 
 				return $template->getResponse();
@@ -189,6 +189,9 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$template->formId = $strFormId;
 			$template->hasError = $doNotSubmit;
 			$template->resultsLink = '';
+			$template->backLink = sprintf('<a href="%s" class="back_link" title="%s">%s</a>',
+										 $this->generateVotingUrl('', false), specialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']),
+										 $GLOBALS['TL_LANG']['MSC']['backBT']);
 
 			// Display the results link
 			if (($ena && !$voting && $this->obj->active_behaviorNotvotingd == 'opt1') ||
@@ -196,7 +199,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 				(!$ena && !$voting && $this->obj->inactive_behaviorNotvotingd == 'opt1') ||
 				(!$ena && $voting && $this->obj->inactive_behaviorvotingd == 'opt2'))
 				$template->resultsLink = sprintf('<a href="%s" class="result_link" title="%s">%s</a>',
-											$this->generatevotingUrl('results'),
+											$this->generateVotingUrl('results'),
 											specialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
 											$GLOBALS['TL_LANG']['MSC']['showResults']);
 
@@ -264,7 +267,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 	/**
 	 * Generate the voting URL and return it as string
 	 */
-	protected function generatevotingUrl(string $strKey): string {
+	protected function generateVotingUrl(string $key, bool $addKey = true): string {
 
 		$arr = explode('?', Environment::get('request'), 2);
 		$strPage = $arr[0];
@@ -287,7 +290,8 @@ class VotingIncludeElement extends AbstractContentElementController {
         }
 
         // Add the key
-        $arrQuery[] = $strKey . '=' . $this->obj->id;
+        if ($addKey)
+	        $arrQuery[] = $key . '=' . $this->obj->id;
 
 		return ampersand($strPage . '?' . implode('&', $arrQuery));
 	}

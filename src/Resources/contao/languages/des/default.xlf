@@ -6,7 +6,6 @@
         <target>Umfrage</target>
       </trans-unit>
       <trans-unit id="CTE.voting.1">
-        <source>Displays a voting.</source>
         <target>Zeigt eine Umfrage an.</target>
       </trans-unit>
       <trans-unit id="MSC.outof">
@@ -21,7 +20,7 @@
         <source>Please log in to enable voting.</source>
         <target>Bitte loggen Sie sich ein, um abzustimmen zu können.</target>
       </trans-unit>
-      <trans-unit id="MSC.voteNow">
+      <trans-unit id="MSC.votenow">
         <source>Vote now</source>
         <target>Abstimmen</target>
       </trans-unit>
@@ -33,7 +32,7 @@
         <source>Go to voting</source>
         <target>Zur Umfrage</target>
       </trans-unit>
-      <trans-unit id="MSC.votingSubmitted">
+      <trans-unit id="MSC.votingubmitted">
         <source>Thanks for voting!</source>
         <target>Danke für Ihre Stimme!</target>
       </trans-unit>
