@@ -73,28 +73,28 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 
 	'fields' => [
 		'id' => [
-			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+			'sql'                     => "int(10) unsigned NOT null auto_increment"
 		],
 		'pid' => [
 			'foreignKey'              => 'tl_voting_option.title',
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'tstamp' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'tstamp' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting_results']['tstamp'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'flag'                    => 8,
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'ip' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting_results']['ip'],
 			'exclude'                 => true,
 			'filter'                  => true,
 			'search'                  => true,
-			'sql'                     => "varchar(16) NOT NULL default ''"
+			'sql'                     => "varchar(16) NOT null default ''"
 		],
 		'member' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting_results']['member'],
@@ -103,7 +103,7 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 			'search'                  => true,
 			'foreignKey'              => 'tl_member.username',
 			'reference'               => [ 0 => $GLOBALS['TL_LANG']['tl_voting_results']['anonymous'] ],
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		]
 	]
 ];

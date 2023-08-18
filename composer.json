@@ -7,12 +7,11 @@
 	"authors" : [{
 			"name" : "Florian Daeumling",
 			"homepage" : "https://github.com/toteph42",
-      		 "role":"Developer"
-	    },
-	    {
-            "name": "Codefog",
-            "homepage": "http://codefog.pl",
-      		"role":"Developer"
+			"role" : "Developer"
+		}, {
+			"name" : "Codefog",
+			"homepage" : "http://codefog.pl",
+			"role" : "Developer"
 		}
 	],
 	"keywords" : [
@@ -40,6 +39,6 @@
 	"support" : {
 		"issues" : "https://github.com/toteph42/voting/issues",
 		"source" : "https://github.com/toteph42/voting",
-		"docs": "https://github.com/toteph42/voting"
+		"docs" : "https://github.com/toteph42/voting"
 	}
 }

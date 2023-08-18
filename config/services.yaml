@@ -1,3 +1,9 @@
+#
+# 	Voting Bundle
+#
+#	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+# 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+#
 services:
     _defaults:
         autoconfigure: true

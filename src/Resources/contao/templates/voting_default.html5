@@ -1,7 +1,14 @@
 <?php
-    
+ 
+/*
+ * 	Voting Bundle
+ *
+ *	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+ */
+
     $p = 'bundles/voting/styles/';
-	$GLOBALS['TL_CSS'][] = $p.(file_exists($p.'_custom.css') ? '_custom' : 'voting').'.css|static'; 
+	$GLOBALS['TL_CSS'][] = $p.(file_exists($p.'_custom.css') ? '_custom' : 'voting-min').'.css|static'; 
 
 ?>
 <!-- indexer::stop -->

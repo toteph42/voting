@@ -1,4 +1,12 @@
 <?xml version="1.0" ?><xliff version="1.1">
+  <!--
+ 
+  	Voting Bundle
+ 
+ 	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+  	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+
+  -->
   <file datatype="php" original="src/Resources/contao/languages/en/tl_voting.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_voting.title.0">

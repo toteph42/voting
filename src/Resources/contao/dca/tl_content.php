@@ -29,7 +29,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['voting'] = [
 	'inputType'               => 'select',
 	'options_callback'        => [ tl_content_voting::class , 'getVotings' ],
 	'eval'                    => [ 'includeBlankOption' => true, 'chosen' => true, 'tl_class' => 'w50' ],
-	'sql'                     => "int(10) unsigned NOT NULL default '0'"
+	'sql'                     => "int(10) unsigned NOT null default '0'"
 ];
 
 $GLOBALS['TL_DCA']['tl_content']['fields']['voting_current'] = [
@@ -37,7 +37,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['voting_current'] = [
 	'exclude'                 => true,
 	'inputType'               => 'checkbox',
 	'eval'                    => [ 'tl_class' => 'w50 m12' ],
-	'sql'                     => "char(1) NOT NULL default ''"
+	'sql'                     => "char(1) NOT null default ''"
 ];
 
 /**

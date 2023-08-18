@@ -97,37 +97,37 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 
 	'fields' => [
 		'id' => [
-			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+			'sql'                     => "int(10) unsigned NOT null auto_increment"
 		],
 		'pid' => [
 			'foreignKey'              => 'tl_voting.title',
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'tstamp' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'sorting' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'lid' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'language' => [
-			'sql'                     => "varchar(2) NOT NULL default ''"
+			'sql'                     => "varchar(2) NOT null default ''"
 		],
 		'title' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting_option']['title'],
 			'exclude'                 => true,
 			'inputType'               => 'text',
 			'eval'                    => [ 'mandatory' => true, 'maxlength' => 255, 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(255) NOT NULL default ''"
+			'sql'                     => "varchar(255) NOT null default ''"
 		],
 		'published' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting_option']['published'],
 			'exclude'                 => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => [ 'doNotCopy' => true, 'tl_class' => 'w50 m12' ],
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		]
 	]
 ];

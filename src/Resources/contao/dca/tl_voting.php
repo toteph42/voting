@@ -102,16 +102,16 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 
 	'fields' => [
 		'id' => [
-			'sql'                     => "int(10) unsigned NOT NULL auto_increment"
+			'sql'                     => "int(10) unsigned NOT null auto_increment"
 		],
 		'tstamp' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'lid' => [
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'language' => [
-			'sql'                     => "varchar(2) NOT NULL default ''"
+			'sql'                     => "varchar(2) NOT null default ''"
 		],
 		'title' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['title'],
@@ -119,7 +119,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'search'                  => true,
 			'inputType'               => 'text',
 			'eval'                    => [ 'mandatory' => true, 'maxlength' => 255 ],
-			'sql'                     => "varchar(255) NOT NULL default ''"
+			'sql'                     => "varchar(255) NOT null default ''"
 		],
 		'showtitle' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_poll']['showtitle'],
@@ -127,7 +127,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('tl_class'=>'w50'),
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		],
 		'type' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['type'],
@@ -137,7 +137,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'options'                 => [ 'single', 'multiple' ],
 			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['type'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(8) NOT NULL default ''"
+			'sql'                     => "varchar(8) NOT null default ''"
 		],
 		'votingInterval' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['votingInterval'],
@@ -145,7 +145,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'exclude'                 => true,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'digit', 'tl_class' => 'w50' ],
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'voteMax' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['voteMax'],
@@ -153,7 +153,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'exclude'                 => true,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'digit', 'tl_class' => 'w50' ],
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'protected' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['protected'],
@@ -161,7 +161,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		],
 		'featured' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['featured'],
@@ -169,7 +169,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		],
 		'active_behaviorNotvotingd' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviorNotvotingd'],
@@ -179,7 +179,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
 			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorNotvotingd'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(4) NOT NULL default ''"
+			'sql'                     => "varchar(4) NOT null default ''"
 		],
 		'active_behaviorvotingd' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviorvotingd'],
@@ -189,7 +189,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
 			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvotingd'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(4) NOT NULL default ''"
+			'sql'                     => "varchar(4) NOT null default ''"
  		],
 		'inactive_behaviorNotvotingd' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviorNotvotingd'],
@@ -199,7 +199,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
  			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
 			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorNotvotingd'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(4) NOT NULL default ''"
+			'sql'                     => "varchar(4) NOT null default ''"
 		],
 		'inactive_behaviorvotingd' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviorvotingd'],
@@ -209,7 +209,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
 			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvotingd'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
-			'sql'                     => "varchar(4) NOT NULL default ''"
+			'sql'                     => "varchar(4) NOT null default ''"
 		],
 		'jumpTo' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_module']['jumpTo'][0],
@@ -217,7 +217,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'pageTree',
 			'eval'                    => [ 'fieldType' => 'radio', 'tl_class' => 'clr' ],
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+			'sql'                     => "int(10) unsigned NOT null default '0'"
 		],
 		'published' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['published'],
@@ -225,7 +225,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => [ 'doNotCopy' => true, 'tl_class' => 'w50' ],
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		],
 		'closed' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['closed'],
@@ -233,7 +233,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => [ 'doNotCopy' => true, 'tl_class' => 'w50' ],
-			'sql'                     => "char(1) NOT NULL default ''"
+			'sql'                     => "char(1) NOT null default ''"
 		],
 		'activeStart' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['activeStart'],
@@ -242,7 +242,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'flag'                    => 8,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard' ],
-			'sql'                     => "varchar(10) NOT NULL default ''"
+			'sql'                     => "varchar(10) NOT null default ''"
 		],
 		'activeStop' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['activeStop'],
@@ -251,7 +251,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'flag'                    => 8,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard' ],
-			'sql'                     => "varchar(10) NOT NULL default ''"
+			'sql'                     => "varchar(10) NOT null default ''"
 		],
 		'showStart' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['showStart'],
@@ -260,7 +260,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'flag'                    => 8,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard' ],
-			'sql'                     => "varchar(10) NOT NULL default ''"
+			'sql'                     => "varchar(10) NOT null default ''"
 		],
 		'showStop' => [
 			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['showStop'],
@@ -269,7 +269,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'flag'                    => 8,
 			'inputType'               => 'text',
 			'eval'                    => [ 'rgxp' => 'datim', 'datepicker' => true, 'tl_class' => 'w50 wizard' ],
-			'sql'                     => "varchar(10) NOT NULL default ''"
+			'sql'                     => "varchar(10) NOT null default ''"
 		]
 	]
 ];

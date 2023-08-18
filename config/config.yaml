@@ -4,6 +4,8 @@
 #	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
 # 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 #
-app.controller:
-    resource: ../src/Controller
-    type: annotation
+contao:
+    backend:
+        badge_title: develop
+        route_prefix: '/admin'
+            
