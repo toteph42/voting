@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  * 	Voting Bundle
  *
- *	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -14,7 +14,9 @@ use Contao\Backend;
 use Contao\DC_Table;
 use Contao\DataContainer;
 use Contao\System;
+use Contao\Input;
 
+System::loadLanguageFile('default');
 System::loadLanguageFile('tl_voting_results');
 
 $GLOBALS['TL_DCA']['tl_voting_results'] = [
@@ -61,7 +63,7 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_results']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['MSC']['deleteConfirm'].'\')) return false; Backend.getScrollOffset();"'
 			],
 			'show' => [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_results']['show'],
@@ -116,7 +118,7 @@ class tl_voting_results extends Backend {
 	public function filterItemsByParent(): void {
 
 		$GLOBALS['TL_DCA']['tl_voting_results']['list']['sorting']['root'] =
-				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute($this->Input->get('id'))->fetchEach('id');
+				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute(Input::get('id'))->fetchEach('id');
 	}
 
 	/**
@@ -130,7 +132,7 @@ class tl_voting_results extends Backend {
 
 			if ($objMember->numRows)
 				$args[2] = '<a href="contao/main.php?do=member&act=show&id='.$row['member'].'&rt='.
-							REQUEST_TOKEN.'">'.$objMember->username.' (ID '.$row['member'].')</a>';
+							System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue().'">'.$objMember->username.' (ID '.$row['member'].')</a>';
 		}
 
 		return $args;

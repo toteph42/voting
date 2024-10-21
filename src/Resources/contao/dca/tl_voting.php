@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  * 	Voting Bundle
  *
- *	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -13,6 +13,10 @@ namespace VotingBundle\contao\dca;
 use Contao\Backend;
 use Contao\DC_Table;
 use Contao\Image;
+use Contao\System;
+use Contao\Input;
+
+System::loadLanguageFile('default');
 
 $GLOBALS['TL_DCA']['tl_voting'] = [
 
@@ -294,8 +298,8 @@ class tl_voting extends Backend {
 	public function iconFeatured(array $row, ?string $href, string $label, string $title,
 								 string $icon, string $attributes): string {
 
-	 	if (($id = $this->Input->get('fid')) && strlen($id)) {
-			$this->toggleFeatured(intval($id), $this->Input->get('state'));
+	 	if (($id = Input::get('fid')) && strlen($id)) {
+			$this->toggleFeatured(intval($id), Input::get('state'));
 			$this->redirect($this->getReferer());
 	   	}
 
@@ -304,7 +308,7 @@ class tl_voting extends Backend {
 		if (!$row['featured'])
 			$icon = 'featured_.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 
@@ -323,8 +327,8 @@ class tl_voting extends Backend {
 	public function toggleIcon(array $row, ?string $href, string $label, string $title, string $icon,
 							   string $attributes): string {
 
-	   	if (($id = $this->Input->get('tid')) && strlen($id) && !$this->Input->get('fid')) {
-			$this->toggleVisibility(intval($id), $this->Input->get('state'));
+	   	if (($id = Input::get('tid')) && strlen($id) && !Input::get('fid')) {
+			$this->toggleVisibility(intval($id), Input::get('state'));
 	   		$this->redirect($this->getReferer());
 	   	}
 
@@ -333,7 +337,7 @@ class tl_voting extends Backend {
 		if (!$row['published'])
 			$icon = 'invisible.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 

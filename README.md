@@ -6,7 +6,7 @@
 
 This bundle is based on [contao-polls](https://github.com/codefog/contao-polls). It is sligthly modified,
 a couple on bug fixes were applied and the whole bundle is made compatible with the developer rules defined for
-[Contao 4.13](https://contao.org/de/).
+[Contao 5.3](https://contao.org/de/).
 
 ## Setup a voting request
 

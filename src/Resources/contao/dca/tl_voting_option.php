@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  * 	Voting Bundle
  *
- *	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -17,6 +17,7 @@ use Contao\Image;
 use Contao\Input;
 use Contao\System;
 
+System::loadLanguageFile('default');
 System::loadLanguageFile('tl_voting_option');
 
 $GLOBALS['TL_DCA']['tl_voting_option'] = [
@@ -46,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['reset'],
 				'href'                => 'key=reset',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['tl_voting_option']['reset'][1] . '\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['tl_voting_option']['reset'][1].'\')) return false; Backend.getScrollOffset();"'
 			],
 			'all' => [
 				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
@@ -70,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['MSC']['deleteConfirm'].'\')) return false; Backend.getScrollOffset();"'
 			],
 			'toggle' => [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['toggle'],
@@ -194,8 +195,8 @@ class tl_voting_option extends Backend {
 	public function toggleIcon(array $row, ?string $href, string $label, string $title,
 							   string $icon, string $attributes): string {
 
-		if (($t = $this->Input->get('tid')) && strlen($t)) {
-	   		$this->toggleVisibility(intval($t), $this->Input->get('state'));
+		if (($t = Input::get('tid')) && strlen($t)) {
+	   		$this->toggleVisibility(intval($t), Input::get('state'));
 			$this->redirect($this->getReferer());
 	   	}
 
@@ -204,7 +205,7 @@ class tl_voting_option extends Backend {
 		if (!$row['published'])
 			$icon = 'invisible.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.Backend::addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 

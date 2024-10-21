@@ -3,7 +3,7 @@
  
   	Voting Bundle
  
- 	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -32,6 +32,9 @@
       </trans-unit>
       <trans-unit id="MSC.votingClosed">
         <source>This voting is closed.</source>
+      </trans-unit>
+      <trans-unit id="MSC.deleteConfirm">
+        <source>Do you really want to delete element ID %s?</source>
       </trans-unit>
     </body>
   </file>

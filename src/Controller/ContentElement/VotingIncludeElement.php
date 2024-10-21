@@ -4,7 +4,7 @@ declare(strict_types=1);
 /*
  * 	Voting Bundle
  *
- *	@copyright	(c) 2023 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -32,7 +32,9 @@ class VotingIncludeElement extends AbstractContentElementController {
 
 	protected function getResponse(Template $template, ContentModel $model, Request $request): Response {
 
-		if (TL_MODE == 'BE')
+		$scopeMatcher = System::getContainer()->get('contao.routing.scope_matcher');
+		$request = System::getContainer()->get('request_stack')->getMainRequest();
+		if ($request && $scopeMatcher->isBackendRequest($request))
 			$template->voting = '### VOTING ###';
 		else {
 
@@ -58,8 +60,10 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$template->showResults = $show;
 			$template->showForm = false;
 
+			$tokenChecker = System::getContainer()->get('contao.security.token_checker');
+        
 			// display a "login to voting" message
-			if ($this->obj->protected && !FE_USER_LOGGED_IN) {
+			if ($this->obj->protected && !$tokenChecker->hasFrontendUser()) {
 
 				$template->cssTyp = 'protected';
 				$template->cssMsg = 'login';
@@ -184,8 +188,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$template->showForm = true;
 			$template->options = $objWidget;
 			$template->submit = (!$ena || $voting || ($this->obj->protected &&
-									!FE_USER_LOGGED_IN)) ? '' : $GLOBALS['TL_LANG']['MSC']['voteNow'];
-			$template->action = ampersand(Environment::get('request'));
+								 !$tokenChecker->hasFrontendUser())) ? '' : $GLOBALS['TL_LANG']['MSC']['voteNow'];
+			$template->action = StringUtil::ampersand(Environment::get('request'));
 			$template->formId = $strFormId;
 			$template->hasError = $doNotSubmit;
 			$template->resultsLink = '';
@@ -206,7 +210,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 			// Add the voting
 			if (Input::post('FORM_SUBMIT') == $strFormId && !$doNotSubmit) {
 
-				if (!$ena || $voting || ($this->obj->protected && !FE_USER_LOGGED_IN))
+				if (!$ena || $voting || ($this->obj->protected && !$tokenChecker->hasFrontendUser()))
 					$this->reload();
 
 				$arrValues = is_array($objWidget->value) ? $objWidget->value : array($objWidget->value);
@@ -220,7 +224,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 	    				'pid' 		=> $value,
 	    				'tstamp' 	=> $time,
 	    				'ip' 		=> Environment::get('ip'),
-	    				'member' 	=> FE_USER_LOGGED_IN ? FrontendUser::getInstance()->id : 0
+	    				'member' 	=> $tokenChecker->hasFrontendUser() ? FrontendUser::getInstance()->id : 0
 	    			];
 
 	    			Database::getInstance()->prepare("INSERT INTO tl_voting_results %s")->set($arrSet)->execute();
@@ -244,16 +248,17 @@ class VotingIncludeElement extends AbstractContentElementController {
 		if (Input::cookie($this->Cookie.$this->obj->id) > $intExpires)
 			return true;
 
-        if ($this->obj->protected && FE_USER_LOGGED_IN)
+		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
+        if ($this->obj->protected && $tokenChecker->hasFrontendUser())
             $objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE member=? AND ".
 					    "tstamp >? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
-            			(!BE_USER_LOGGED_IN ? " AND published=1" : "").") ORDER BY tstamp DESC")
+            			(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
             			->limit(1)
             			->execute(FrontendUser::getInstance()->id, $intExpires, $this->obj->id);
         else
     		$objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE ip=? AND ".
 					    "tstamp >? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
-    					(!BE_USER_LOGGED_IN ? " AND published=1" : "").") ORDER BY tstamp DESC")
+    					(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
     					->limit(1)
     					->execute(Environment::get('ip'), $intExpires, $this->obj->id);
 
@@ -293,7 +298,7 @@ class VotingIncludeElement extends AbstractContentElementController {
         if ($addKey)
 	        $arrQuery[] = $key . '=' . $this->obj->id;
 
-		return ampersand($strPage . '?' . implode('&', $arrQuery));
+		return StringUtil::ampersand($strPage . '?' . implode('&', $arrQuery));
 	}
 
 	/**
@@ -301,15 +306,16 @@ class VotingIncludeElement extends AbstractContentElementController {
 	 */
 	protected function getVotingQuery(string $strTable): string {
 
-		switch ($strTable) {
+		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
+        switch ($strTable) {
 		case 'tl_voting':
 			$strQuery = "SELECT *, (SELECT COUNT(*) FROM tl_voting_option WHERE pid=tl_voting.id) AS ".
-						"options FROM tl_voting WHERE id=?" . (!BE_USER_LOGGED_IN ? " AND published=1" : "");
+						"options FROM tl_voting WHERE id=?" . (!$tokenChecker->hasBackendUser() ? " AND published=1" : "");
 			break;
 
 		case 'tl_voting_option':
 			$strQuery = "SELECT *, (SELECT COUNT(*) FROM tl_voting_results WHERE pid=tl_voting_option.id) AS ".
-						"voting FROM tl_voting_option WHERE pid=?" . (!BE_USER_LOGGED_IN ? " AND published=1" : "").
+						"voting FROM tl_voting_option WHERE pid=?" . (!$tokenChecker->hasBackendUser() ? " AND published=1" : "").
 						" ORDER BY sorting";
 			break;
 		}
