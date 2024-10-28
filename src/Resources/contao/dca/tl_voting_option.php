@@ -16,6 +16,7 @@ use Contao\Environment;
 use Contao\Image;
 use Contao\Input;
 use Contao\System;
+use Contao\StringUtil;
 
 System::loadLanguageFile('default');
 System::loadLanguageFile('tl_voting_option');
@@ -209,7 +210,7 @@ class tl_voting_option extends Backend
 		if (!$row['published'])
 			$icon = 'invisible.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 

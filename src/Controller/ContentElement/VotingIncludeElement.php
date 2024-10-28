@@ -15,6 +15,7 @@ use Contao\Database;
 use Contao\Environment;
 use Contao\FrontendUser;
 use Contao\Input;
+use Contao\StringUtil;
 use Contao\System;
 use Contao\CoreBundle\Controller\ContentElement\AbstractContentElementController;
 use Contao\Template;
@@ -153,7 +154,7 @@ class VotingIncludeElement extends AbstractContentElementController
 				if ($ena)
 					$template->formLink = sprintf('<a href="%s" class="vote_link" title="%s">%s</a>',
 											 	  $this->generateVotingUrl('voting'),
-												  htmlspecialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
+												  StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
 											 	  $GLOBALS['TL_LANG']['MSC']['showForm']);
 
 				return $template->getResponse();
@@ -194,13 +195,13 @@ class VotingIncludeElement extends AbstractContentElementController
 			$template->options = $objWidget;
 			$template->submit = (!$ena || $voting || ($this->obj->protected &&
 								 !$tokenChecker->hasFrontendUser())) ? '' : $GLOBALS['TL_LANG']['MSC']['voteNow'];
-			$template->action = ampersand(Environment::get('request'));
+			$template->action = StringUtil::ampersand(Environment::get('request'));
 			$template->formId = $strFormId;
 			$template->hasError = $doNotSubmit;
 			$template->resultsLink = '';
 			$template->backLink = sprintf('<a href="%s" class="back_link" title="%s">%s</a>',
 										 $this->generateVotingUrl('', false),
-										 htmlspecialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']),
+										 StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']),
 										 $GLOBALS['TL_LANG']['MSC']['backBT']);
 
 			// Display the results link
@@ -210,7 +211,7 @@ class VotingIncludeElement extends AbstractContentElementController
 				(!$ena && $voting && $this->obj->inactive_behaviorvotingd == 'opt2'))
 				$template->resultsLink = sprintf('<a href="%s" class="result_link" title="%s">%s</a>',
 											$this->generateVotingUrl('results'),
-											htmlspecialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
+											StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
 											$GLOBALS['TL_LANG']['MSC']['showResults']);
 
 			// Add the voting
@@ -308,7 +309,7 @@ class VotingIncludeElement extends AbstractContentElementController
         if ($addKey)
 	        $arrQuery[] = $key . '=' . $this->obj->id;
 
-		return ampersand($strPage . '?' . implode('&', $arrQuery));
+		return StringUtil::ampersand($strPage . '?' . implode('&', $arrQuery));
 	}
 
 	/**

@@ -13,6 +13,7 @@ namespace VotingBundle\contao\dca;
 use Contao\Backend;
 use Contao\DC_Table;
 use Contao\Image;
+use Contao\StringUtil;
 use Contao\System;
 use Contao\Input;
 
@@ -308,7 +309,7 @@ class tl_voting extends Backend
 		if (!$row['featured'])
 			$icon = 'featured_.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 
@@ -337,7 +338,7 @@ class tl_voting extends Backend
 		if (!$row['published'])
 			$icon = 'invisible.gif';
 
-		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.StringUtil::specialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 
