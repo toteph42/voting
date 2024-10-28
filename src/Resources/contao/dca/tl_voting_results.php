@@ -14,7 +14,6 @@ use Contao\Backend;
 use Contao\DC_Table;
 use Contao\DataContainer;
 use Contao\System;
-use Contao\Input;
 
 System::loadLanguageFile('default');
 System::loadLanguageFile('tl_voting_results');
@@ -63,7 +62,7 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_results']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['MSC']['deleteConfirm'].'\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
 			],
 			'show' => [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_results']['show'],
@@ -110,29 +109,31 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 	]
 ];
 
-class tl_voting_results extends Backend {
-
+class tl_voting_results extends Backend
+{
 	/**
 	 * Limit the displayed items so filter panel can handle things correctly
 	 */
-	public function filterItemsByParent(): void {
-
+	public function filterItemsByParent(): void
+	{
 		$GLOBALS['TL_DCA']['tl_voting_results']['list']['sorting']['root'] =
-				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute(Input::get('id'))->fetchEach('id');
+				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute($this->Input->get('id'))->fetchEach('id');
 	}
 
 	/**
 	 * Add a member username
 	 */
-	public function addMemberUsername(array $row, string $label, DataContainer $dc, array $args): array {
-
-		if ($row['member']) {
+	public function addMemberUsername(array $row, string $label, DataContainer $dc, array $args): array
+	{
+		if ($row['member'])
+		{
 			$objMember = $this->Database->prepare("SELECT * FROM tl_member WHERE id=?")
 										->execute($row['member']);
 
 			if ($objMember->numRows)
 				$args[2] = '<a href="contao/main.php?do=member&act=show&id='.$row['member'].'&rt='.
-							System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue().'">'.$objMember->username.' (ID '.$row['member'].')</a>';
+							System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue().
+							'">'.$objMember->username.' (ID '.$row['member'].')</a>';
 		}
 
 		return $args;

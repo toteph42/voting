@@ -12,5 +12,6 @@ namespace Toteph42\VotingBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class VotingBundle extends Bundle {
+class VotingBundle extends Bundle
+{
 }

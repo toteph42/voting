@@ -33,9 +33,6 @@
       <trans-unit id="MSC.votingClosed">
         <source>This voting is closed.</source>
       </trans-unit>
-      <trans-unit id="MSC.deleteConfirm">
-        <source>Do you really want to delete element ID %s?</source>
-      </trans-unit>
     </body>
   </file>
 </xliff>

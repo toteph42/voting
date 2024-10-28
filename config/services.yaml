@@ -17,6 +17,4 @@ services:
                 category: includes
                 type: voting
                 template: ce_voting
-                renderer: forward
-                method: __invoke
              

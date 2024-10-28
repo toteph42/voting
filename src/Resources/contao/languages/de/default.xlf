@@ -49,10 +49,6 @@
         <source>This voting is closed.</source>
         <target>Umfrage ist geschlossen.</target>
       </trans-unit>
-      <trans-unit id="MSC.deleteConfirm">
-        <source>Do you really want to delete element ID %s?</source>
-        <target>Soll das Element ID %s wirklich gelöscht werden?</target>
-      </trans-unit>
-   </body>
+    </body>
   </file>
 </xliff>

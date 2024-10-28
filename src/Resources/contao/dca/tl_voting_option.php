@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['reset'],
 				'href'                => 'key=reset',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['tl_voting_option']['reset'][1].'\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['tl_voting_option']['reset'][1] . '\')) return false; Backend.getScrollOffset();"'
 			],
 			'all' => [
 				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
@@ -71,7 +71,7 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.gif',
-				'attributes'          => 'onclick="if (!confirm(\''.$GLOBALS['TL_LANG']['MSC']['deleteConfirm'].'\')) return false; Backend.getScrollOffset();"'
+				'attributes'          => 'onclick="if (!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\')) return false; Backend.getScrollOffset();"'
 			],
 			'toggle' => [
 				'label'               => &$GLOBALS['TL_LANG']['tl_voting_option']['toggle'],
@@ -133,12 +133,13 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 	]
 ];
 
-class tl_voting_option extends Backend {
-
+class tl_voting_option extends Backend
+{
     /**
      * Reset the voting and purge all votings
      */
-    public function resetVoting(): void {
+    public function resetVoting(): void
+    {
 
     	if (Input::get('key') != 'reset')
             $this->redirect($this->getReferer());
@@ -152,13 +153,14 @@ class tl_voting_option extends Backend {
 	/**
 	 * List voting options
 	 */
-	public function listVotingOptions(array $arrRow): string {
-
+	public function listVotingOptions(array $arrRow): string
+	{
 		static $Total;
 		static $voteMax = 0;
 
 		// Get the total number of votings
-		if ($Total === null) {
+		if ($Total === null)
+		{
 			$Total = $this->Database->prepare("SELECT COUNT(*) AS total FROM tl_voting_results WHERE pid IN (SELECT id FROM tl_voting_option WHERE pid=?)")
 									   ->execute($arrRow['pid'])
 									   ->total;
@@ -171,10 +173,12 @@ class tl_voting_option extends Backend {
 								   ->total;
 
 		$width = $Total ? (round(($votings / $Total), 2) * 200) : 0;
-	    if (!$voteMax) {
+	    if (!$voteMax)
+	    {
 			$width = $Total ? (round(($votings / $Total), 2) * 200) : 0;
 			$prcnt = $Total ? (round(($votings / $Total), 2) * 100) : 0;
-	    } else {
+	    } else
+	    {
 			$width = $voteMax ? (round(($votings / $voteMax), 2) * 200) : 0;
 			$prcnt = $voteMax ? (round(($votings / $voteMax), 2) * 100) : 0;
 	    }
@@ -192,11 +196,11 @@ class tl_voting_option extends Backend {
 	/**
 	 * Return the "toggle visibility" button
 	 */
-	public function toggleIcon(array $row, ?string $href, string $label, string $title,
-							   string $icon, string $attributes): string {
-
-		if (($t = Input::get('tid')) && strlen($t)) {
-	   		$this->toggleVisibility(intval($t), Input::get('state'));
+	public function toggleIcon(array $row, ?string $href, string $label, string $title, string $icon, string $attributes): string
+	{
+		if (($t = $this->Input->get('tid')) && strlen($t))
+		{
+	   		$this->toggleVisibility(intval($t), $this->Input->get('state'));
 			$this->redirect($this->getReferer());
 	   	}
 
@@ -205,15 +209,15 @@ class tl_voting_option extends Backend {
 		if (!$row['published'])
 			$icon = 'invisible.gif';
 
-		return '<a href="'.Backend::addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
+		return '<a href="'.$this->addToUrl($href).'" title="'.htmlspecialchars($title).'"'.$attributes.'>'.
 				Image::getHtml($icon, $label).'</a> ';
 	}
 
 	/**
 	 * Publish/unpublish a voting option
 	 */
-	public function toggleVisibility(int $id, ?string $visible): void {
-
+	public function toggleVisibility(int $id, ?string $visible): void
+	{
 		$this->Database->prepare("UPDATE tl_voting_option SET tstamp=".time().
 								 ", published='".$visible."' WHERE id=?")->execute($id);
 	}

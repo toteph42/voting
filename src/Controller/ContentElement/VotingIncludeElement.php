@@ -22,7 +22,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Contao\FrontendTemplate;
 
-class VotingIncludeElement extends AbstractContentElementController {
+class VotingIncludeElement extends AbstractContentElementController
+{
 
 	public const TYPE = 'voting';
 
@@ -30,13 +31,15 @@ class VotingIncludeElement extends AbstractContentElementController {
     private ?Database $db = null;
 	protected $obj;
 
-	protected function getResponse(Template $template, ContentModel $model, Request $request): Response {
-
+	protected function getResponse(Template $template, ContentModel $model, Request $request): Response
+	{
 		$scopeMatcher = System::getContainer()->get('contao.routing.scope_matcher');
 		$request = System::getContainer()->get('request_stack')->getMainRequest();
+
 		if ($request && $scopeMatcher->isBackendRequest($request))
 			$template->voting = '### VOTING ###';
-		else {
+		else
+		{
 
 			if (!$this->db)
         		$this->db = Database::getInstance();
@@ -46,8 +49,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 										   ->execute($template->voting);
 
 
-			if ($this->obj->numRows && $this->obj->options) {
-
+			if ($this->obj->numRows && $this->obj->options)
+			{
 				$template = new FrontendTemplate('voting_default');
 				$template->setData($this->obj->row());
 			}
@@ -61,10 +64,10 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$template->showForm = false;
 
 			$tokenChecker = System::getContainer()->get('contao.security.token_checker');
-        
-			// display a "login to voting" message
-			if ($this->obj->protected && !$tokenChecker->hasFrontendUser()) {
 
+			// display a "login to voting" message
+			if ($this->obj->protected && !$tokenChecker->hasFrontendUser())
+			{
 				$template->cssTyp = 'protected';
 				$template->cssMsg = 'login';
 				$template->message = $GLOBALS['TL_LANG']['MSC']['loginTovoting'];
@@ -81,16 +84,16 @@ class VotingIncludeElement extends AbstractContentElementController {
 				$template->cssTyp = 'featured';
 
 			// display a message if the voting is disabled
-			if (!$ena) {
-
+			if (!$ena)
+			{
 				$template->cssTyp = 'closed';
 				$template->cssMsg = 'isclosed';
 				$template->message = $GLOBALS['TL_LANG']['MSC']['votingClosed'];
 			}
 
 			// Display a confirmation message
-			if (isset($_SESSION['voting'][$this->obj->id])) {
-
+			if (isset($_SESSION['voting'][$this->obj->id]))
+			{
 				$blnJustvotingd = true;
 				$template->cssMsg = 'confirm';
 				$template->message = $_SESSION['voting'][$this->obj->id];
@@ -114,8 +117,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$Options = $this->db->prepare($this->getVotingQuery('tl_voting_option'))->execute($this->obj->id);
 
 			// Display results under certain circumstances
-			if ($show){
-
+			if ($show)
+			{
 				$arrResults = [];
 				$voting = array_sum($Options->fetchEach('voting'));
 				$Options->reset();
@@ -123,7 +126,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 				System::loadLanguageFile('tl_voting_option');
 
 				// Generate results
-				while ($Options->next()) {
+				while ($Options->next())
+				{
 					if (!$this->obj->voteMax)
 						$arrResults[] = [
 							'title'   	=> $Options->title,
@@ -148,8 +152,9 @@ class VotingIncludeElement extends AbstractContentElementController {
 				// Display the form link
 				if ($ena)
 					$template->formLink = sprintf('<a href="%s" class="vote_link" title="%s">%s</a>',
-											 $this->generateVotingUrl('voting'), specialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
-											 $GLOBALS['TL_LANG']['MSC']['showForm']);
+											 	  $this->generateVotingUrl('voting'),
+												  htmlspecialchars($GLOBALS['TL_LANG']['MSC']['showForm']),
+											 	  $GLOBALS['TL_LANG']['MSC']['showForm']);
 
 				return $template->getResponse();
 			}
@@ -177,8 +182,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$objWidget->id = 'voting_' . $this->obj->id;
 
 			// Validate the widget
-			if (Input::post('FORM_SUBMIT') == $strFormId && !Input::post('results')) {
-
+			if (Input::post('FORM_SUBMIT') == $strFormId && !Input::post('results'))
+			{
 				$objWidget->validate();
 
 				if ($objWidget->hasErrors())
@@ -189,12 +194,13 @@ class VotingIncludeElement extends AbstractContentElementController {
 			$template->options = $objWidget;
 			$template->submit = (!$ena || $voting || ($this->obj->protected &&
 								 !$tokenChecker->hasFrontendUser())) ? '' : $GLOBALS['TL_LANG']['MSC']['voteNow'];
-			$template->action = StringUtil::ampersand(Environment::get('request'));
+			$template->action = ampersand(Environment::get('request'));
 			$template->formId = $strFormId;
 			$template->hasError = $doNotSubmit;
 			$template->resultsLink = '';
 			$template->backLink = sprintf('<a href="%s" class="back_link" title="%s">%s</a>',
-										 $this->generateVotingUrl('', false), specialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']),
+										 $this->generateVotingUrl('', false),
+										 htmlspecialchars($GLOBALS['TL_LANG']['MSC']['backBTTitle']),
 										 $GLOBALS['TL_LANG']['MSC']['backBT']);
 
 			// Display the results link
@@ -204,12 +210,12 @@ class VotingIncludeElement extends AbstractContentElementController {
 				(!$ena && $voting && $this->obj->inactive_behaviorvotingd == 'opt2'))
 				$template->resultsLink = sprintf('<a href="%s" class="result_link" title="%s">%s</a>',
 											$this->generateVotingUrl('results'),
-											specialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
+											htmlspecialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
 											$GLOBALS['TL_LANG']['MSC']['showResults']);
 
 			// Add the voting
-			if (Input::post('FORM_SUBMIT') == $strFormId && !$doNotSubmit) {
-
+			if (Input::post('FORM_SUBMIT') == $strFormId && !$doNotSubmit)
+			{
 				if (!$ena || $voting || ($this->obj->protected && !$tokenChecker->hasFrontendUser()))
 					$this->reload();
 
@@ -219,7 +225,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 				Input::setCookie($this->Cookie.$this->obj->id, $time, ($time + (365 * 86400)));
 
 	            // Store the voting
-	            foreach ($arrValues as $value) {
+	            foreach ($arrValues as $value)
+	            {
 	    			$arrSet = [
 	    				'pid' 		=> $value,
 	    				'tstamp' 	=> $time,
@@ -240,7 +247,8 @@ class VotingIncludeElement extends AbstractContentElementController {
 		return $template->getResponse();
     }
 
-	public function hasVoted(): bool {
+	public function hasVoted(): bool
+	{
 
 		$intExpires = $this->obj->votingInterval ? (time() - $this->obj->votingInterval) : 0;
 
@@ -249,7 +257,7 @@ class VotingIncludeElement extends AbstractContentElementController {
 			return true;
 
 		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
-        if ($this->obj->protected && $tokenChecker->hasFrontendUser())
+		if ($this->obj->protected && $tokenChecker->hasFrontendUser())
             $objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE member=? AND ".
 					    "tstamp >? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
             			(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
@@ -272,19 +280,21 @@ class VotingIncludeElement extends AbstractContentElementController {
 	/**
 	 * Generate the voting URL and return it as string
 	 */
-	protected function generateVotingUrl(string $key, bool $addKey = true): string {
+	protected function generateVotingUrl(string $key, bool $addKey = true): string
+	{
 
 		$arr = explode('?', Environment::get('request'), 2);
 		$strPage = $arr[0];
 		$strQuery = count($arr) == 2 ? $arr[1] : null;
 		$arrQuery = [];
 
-        // Parse the current query
-        if ($strQuery != '') {
+        // parse the current query
+        if ($strQuery != '')
+        {
 
             $arrQuery = explode('&', $strQuery);
 
-            // Remove the "voting" and "results" parameters
+            // remove the "voting" and "results" parameters
             foreach ($arrQuery as $k => $v) {
                 list($key, $value) = explode('=', $v, 2);
 
@@ -298,16 +308,18 @@ class VotingIncludeElement extends AbstractContentElementController {
         if ($addKey)
 	        $arrQuery[] = $key . '=' . $this->obj->id;
 
-		return StringUtil::ampersand($strPage . '?' . implode('&', $arrQuery));
+		return ampersand($strPage . '?' . implode('&', $arrQuery));
 	}
 
 	/**
 	 * Generate a select statement that includes translated fields
 	 */
-	protected function getVotingQuery(string $strTable): string {
+	protected function getVotingQuery(string $strTable): string
+	{
 
 		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
-        switch ($strTable) {
+        switch ($strTable)
+        {
 		case 'tl_voting':
 			$strQuery = "SELECT *, (SELECT COUNT(*) FROM tl_voting_option WHERE pid=tl_voting.id) AS ".
 						"options FROM tl_voting WHERE id=?" . (!$tokenChecker->hasBackendUser() ? " AND published=1" : "");

@@ -43,13 +43,14 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['voting_current'] = [
 /**
  * Provide miscellaneous methods that are used by the data configuration array.
  */
-class tl_content_voting extends Backend {
+class tl_content_voting extends Backend
+{
 
 	/**
 	 * Get all votings and return them as array
 	 */
-	public function getVotings(): array {
-
+	public function getVotings(): array
+	{
 		$arr = [];
 
 		$obj= $this->Database->execute("SELECT id, title FROM tl_voting ORDER BY title");

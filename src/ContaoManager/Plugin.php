@@ -16,13 +16,13 @@ use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Toteph42\VotingBundle\VotingBundle;
 
-class Plugin implements BundlePluginInterface {
+class Plugin implements BundlePluginInterface
+{
 
-    public function getBundles(ParserInterface $parser): array {
-
+    public function getBundles(ParserInterface $parser): array
+    {
         return [
-            BundleConfig::create(VotingBundle::class)
-                ->setLoadAfter([ ContaoCoreBundle::class ]), ];
+            BundleConfig::create(VotingBundle::class)->setLoadAfter([ ContaoCoreBundle::class ]), ];
     }
 
 }
