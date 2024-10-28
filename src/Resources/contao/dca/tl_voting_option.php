@@ -198,9 +198,9 @@ class tl_voting_option extends Backend
 	 */
 	public function toggleIcon(array $row, ?string $href, string $label, string $title, string $icon, string $attributes): string
 	{
-		if (($t = $this->Input->get('tid')) && strlen($t))
+		if (($t = Input::get('tid')) && strlen($t))
 		{
-	   		$this->toggleVisibility(intval($t), $this->Input->get('state'));
+	   		$this->toggleVisibility(intval($t), Input::get('state'));
 			$this->redirect($this->getReferer());
 	   	}
 

@@ -14,6 +14,7 @@ use Contao\Backend;
 use Contao\DC_Table;
 use Contao\Image;
 use Contao\System;
+use Contao\Input;
 
 System::loadLanguageFile('default');
 
@@ -296,9 +297,9 @@ class tl_voting extends Backend
 	 */
 	public function iconFeatured(array $row, ?string $href, string $label, string $title, string $icon, string $attributes): string
 	{
-	 	if (($id = $this->Input->get('fid')) && strlen($id))
+	 	if (($id = Input::get('fid')) && strlen($id))
 	 	{
-			$this->toggleFeatured(intval($id), $this->Input->get('state'));
+			$this->toggleFeatured(intval($id), Input::get('state'));
 			$this->redirect($this->getReferer());
 	   	}
 
@@ -325,9 +326,9 @@ class tl_voting extends Backend
 	 */
 	public function toggleIcon(array $row, ?string $href, string $label, string $title, string $icon, string $attributes): string
 	{
-	   	if (($id = $this->Input->get('tid')) && strlen($id) && !$this->Input->get('fid'))
+	   	if (($id = Input:get('tid')) && strlen($id) && !Input::get('fid'))
 	   	{
-			$this->toggleVisibility(intval($id), $this->Input->get('state'));
+			$this->toggleVisibility(intval($id), Input::get('state'));
 	   		$this->redirect($this->getReferer());
 	   	}
 

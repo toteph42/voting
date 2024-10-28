@@ -14,6 +14,7 @@ use Contao\Backend;
 use Contao\DC_Table;
 use Contao\DataContainer;
 use Contao\System;
+use Contao\Input;
 
 System::loadLanguageFile('default');
 System::loadLanguageFile('tl_voting_results');
@@ -117,7 +118,7 @@ class tl_voting_results extends Backend
 	public function filterItemsByParent(): void
 	{
 		$GLOBALS['TL_DCA']['tl_voting_results']['list']['sorting']['root'] =
-				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute($this->Input->get('id'))->fetchEach('id');
+				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute(Input:get('id'))->fetchEach('id');
 	}
 
 	/**
