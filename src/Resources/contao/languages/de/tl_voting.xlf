@@ -65,36 +65,36 @@
         <source>Mark the voting as featured.</source>
         <target>Die Umfrage auf der Web-Seite hervorheben.</target>
       </trans-unit>
-      <trans-unit id="tl_voting.active_behaviorNotvotingd.0">
-        <source>User has not votingd (voting active)</source>
+      <trans-unit id="tl_voting.active_behaviornotvoted.0">
+        <source>User has not voted (voting active)</source>
         <target>Benutzer hat nicht abgestimmt (aktive Umfrage))</target>
       </trans-unit>
-      <trans-unit id="tl_voting.active_behaviorNotvotingd.1">
-        <source>Please specify the behavior if the user has not votingd and the voting is active.</source>
+      <trans-unit id="tl_voting.active_behaviornotvoted.1">
+        <source>Please specify the behavior if the user has not voted and the voting is active.</source>
         <target>Bitte geben Sie an, was angezeigt werden soll, wenn der Benutzer nicht abgestimmt hat und die Umfrage aktiv ist.</target>
       </trans-unit>
-      <trans-unit id="tl_voting.active_behaviorvotingd.0">
-        <source>User has votingd (voting active)</source>
+      <trans-unit id="tl_voting.active_behaviorvoting.0">
+        <source>User has voted (voting active)</source>
         <target>Benutzer hat abgestimmt (aktive Umfrage)</target>
       </trans-unit>
-      <trans-unit id="tl_voting.active_behaviorvotingd.1">
-        <source>Please specify the behavior if the user has votingd and the voting is active.</source>
+      <trans-unit id="tl_voting.active_behaviorvoting.1">
+        <source>Please specify the behavior if the user has voted and the voting is active.</source>
         <target>Bitte geben Sie an, was angezeigt werden soll, wenn der Benutzer abgestimmt hat und die Umfrage aktiv ist.</target>
       </trans-unit>
-      <trans-unit id="tl_voting.inactive_behaviorNotvotingd.0">
-        <source>User has not votingd (voting inactive)</source>
+      <trans-unit id="tl_voting.inactive_behaviornotvoted.0">
+        <source>User has not voted (voting inactive)</source>
         <target>Benutzer hat nicht abgestimmt (inaktive Umfrage)</target>
       </trans-unit>
-      <trans-unit id="tl_voting.inactive_behaviorNotvotingd.1">
-        <source>Please specify the behavior if the user has not votingd and the voting is inactive.</source>
+      <trans-unit id="tl_voting.inactive_behaviornotvoted.1">
+        <source>Please specify the behavior if the user has not voted and the voting is inactive.</source>
         <target>Bitte geben Sie an, was angezeigt werden soll, wenn der Benutzer nicht abgestimmt hat und die Umfrage inaktiv ist.</target>
       </trans-unit>
-      <trans-unit id="tl_voting.inactive_behaviorvotingd.0">
-        <source>User has votingd (voting inactive)</source>
+      <trans-unit id="tl_voting.inactive_behaviorvoting.0">
+        <source>User has voted (voting inactive)</source>
         <target>Benutzer hat abgestimmt (inaktive Umfrage)</target>
       </trans-unit>
-      <trans-unit id="tl_voting.inactive_behaviorvotingd.1">
-        <source>Please specify the behavior if the user has votingd and the voting is inactive.</source>
+      <trans-unit id="tl_voting.inactive_behaviorvoting.1">
+        <source>Please specify the behavior if the user has voted and the voting is inactive.</source>
         <target>Bitte geben Sie an, was angezeigt werden soll, wenn der Benutzer abgestimmt hat und die Umfrage inaktiv ist.</target>
       </trans-unit>
       <trans-unit id="tl_voting.published.0">
@@ -118,7 +118,7 @@
         <target>Aktiv von</target>
       </trans-unit>
       <trans-unit id="tl_voting.activeStart.1">
-        <source>Activate voting voting on this day.</source>
+        <source>Activate voting on this day.</source>
         <target>Aktiviert die Umfrage an diesem Datum.</target>
       </trans-unit>
       <trans-unit id="tl_voting.activeStop.0">
@@ -173,27 +173,27 @@
         <source>Multiple voting (checkbox)</source>
         <target>Mehrfache Auswahl (checkbox)</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorNotvotingd.opt1">
+      <trans-unit id="tl_voting.behaviornotvoting.opt1">
         <source>Display a "show results" link</source>
         <target>Zeigt einen Link zum Ergebnis an</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorNotvotingd.opt2">
+      <trans-unit id="tl_voting.behaviornotvoting.opt2">
         <source>Do not show results at all</source>
         <target>Ergebnisse nicht anzeigen</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorNotvotingd.opt3">
-        <source>Show results immedietaly</source>
+      <trans-unit id="tl_voting.behaviornotvoting.opt3">
+        <source>Show results immediately</source>
         <target>Ergebnisse sofort anzeigen</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorvotingd.opt1">
-        <source>Show results immedietaly</source>
+      <trans-unit id="tl_voting.behaviorvoting.opt1">
+        <source>Show results immediately</source>
         <target>Ergebnisse sofort anzeigen</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorvotingd.opt2">
+      <trans-unit id="tl_voting.behaviorvoting.opt2">
         <source>Display a "show results" link</source>
         <target>Zeigt einen Link zum Ergebnis an</target>
       </trans-unit>
-      <trans-unit id="tl_voting.behaviorvotingd.opt3">
+      <trans-unit id="tl_voting.behaviorvoting.opt3">
         <source>Do not show results at all</source>
         <target>Ergebnisse nicht anzeigen</target>
       </trans-unit>

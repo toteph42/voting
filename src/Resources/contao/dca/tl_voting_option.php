@@ -219,8 +219,8 @@ class tl_voting_option extends Backend
 	 */
 	public function toggleVisibility(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting_option SET tstamp=".time().
-								 ", published='".$visible."' WHERE id=?")->execute($id);
+		$this->Database->prepare("UPDATE tl_voting_option SET tstamp=".time().", published='".$visible.
+				"' WHERE id=?")->execute($id);
 	}
 
 }

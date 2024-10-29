@@ -49,14 +49,13 @@ class VotingIncludeElement extends AbstractContentElementController
 										   ->limit(1)
 										   ->execute($template->voting);
 
-
 			if ($this->obj->numRows && $this->obj->options)
 			{
 				$template = new FrontendTemplate('voting_default');
 				$template->setData($this->obj->row());
 			}
 
-			// default is not to show anything
+			// Default is not to show anything
 			$show = false;
 			$template->cssTyp = 'standard';
 			$template->cssMsg = '';
@@ -64,11 +63,12 @@ class VotingIncludeElement extends AbstractContentElementController
 			$template->showResults = $show;
 			$template->showForm = false;
 
+			// Save Request token
 			$template->requestToken = System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
 
 			$tokenChecker = System::getContainer()->get('contao.security.token_checker');
 
-			// display a "login to voting" message
+			// Display a "login to voting" message
 			if ($this->obj->protected && !$tokenChecker->hasFrontendUser())
 			{
 				$template->cssTyp = 'protected';
@@ -86,7 +86,7 @@ class VotingIncludeElement extends AbstractContentElementController
 			if ($this->obj->featured )
 				$template->cssTyp = 'featured';
 
-			// display a message if the voting is disabled
+			// Display a message if the voting is disabled
 			if (!$ena)
 			{
 				$template->cssTyp = 'closed';
@@ -97,24 +97,25 @@ class VotingIncludeElement extends AbstractContentElementController
 			// Display a confirmation message
 			if (isset($_SESSION['voting'][$this->obj->id]))
 			{
-				$blnJustvotingd = true;
+				$blnJustvoted = true;
 				$template->cssMsg = 'confirm';
 				$template->message = $_SESSION['voting'][$this->obj->id];
 				unset($_SESSION['voting'][$this->obj->id]);
+
 			}
 
 			$template->hasVoted = $voting = $this->hasVoted();
 
-			// check if we should display the results
+			// Check if we should display the results
 			if (($ena && !$voting &&
-				(($this->obj->active_behaviorNotvotingd == 'opt1' && Input::get('results') == $this->obj->id) ||
-				($this->obj->active_behaviorNotvotingd == 'opt3' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
-				($ena && $voting && (($this->obj->active_behaviorvotingd == 'opt2' && Input::get('results') == $this->obj->id) ||
-				($this->obj->active_behaviorvotingd == 'opt1' && ($blnJustvotingd || !Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
-				(!$ena && !$voting && (($this->obj->inactive_behaviorNotvotingd == 'opt1' && Input::get('results') == $this->obj->id) ||
-				($this->obj->inactive_behaviorNotvotingd == 'opt3' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
-				(!$ena && $voting && (($this->obj->inactive_behaviorvotingd == 'opt2' && Input::get('results') == $this->obj->id) ||
-				($this->obj->inactive_behaviorvotingd == 'opt1' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))))
+				(($this->obj->active_behaviornotvoted == 'opt1' && Input::get('results') == $this->obj->id) ||
+				($this->obj->active_behaviornotvoted == 'opt3' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
+				($ena && $voting && (($this->obj->active_behaviorvoting == 'opt2' && Input::get('results') == $this->obj->id) ||
+				($this->obj->active_behaviorvoting == 'opt1' && ($blnJustvoted || !Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
+				(!$ena && !$voting && (($this->obj->inactive_behaviornotvoted == 'opt1' && Input::get('results') == $this->obj->id) ||
+				($this->obj->inactive_behaviornotvoted == 'opt3' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))) ||
+				(!$ena && $voting && (($this->obj->inactive_behaviorvoting == 'opt2' && Input::get('results') == $this->obj->id) ||
+				($this->obj->inactive_behaviorvoting == 'opt1' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))))
 				$show = true;
 
 			$Options = $this->db->prepare($this->getVotingQuery('tl_voting_option'))->execute($this->obj->id);
@@ -207,10 +208,10 @@ class VotingIncludeElement extends AbstractContentElementController
 										 $GLOBALS['TL_LANG']['MSC']['backBT']);
 
 			// Display the results link
-			if (($ena && !$voting && $this->obj->active_behaviorNotvotingd == 'opt1') ||
-				($ena && $voting && $this->obj->active_behaviorvotingd == 'opt2') ||
-				(!$ena && !$voting && $this->obj->inactive_behaviorNotvotingd == 'opt1') ||
-				(!$ena && $voting && $this->obj->inactive_behaviorvotingd == 'opt2'))
+			if (($ena && !$voting && $this->obj->active_behaviornotvoted == 'opt1') ||
+				($ena && $voting && $this->obj->active_behaviorvoting == 'opt2') ||
+				(!$ena && !$voting && $this->obj->inactive_behaviornotvoted == 'opt1') ||
+				(!$ena && $voting && $this->obj->inactive_behaviorvoting == 'opt2'))
 				$template->resultsLink = sprintf('<a href="%s" class="result_link" title="%s">%s</a>',
 											$this->generateVotingUrl('results'),
 											StringUtil::specialchars($GLOBALS['TL_LANG']['MSC']['showResults']),
@@ -243,7 +244,7 @@ class VotingIncludeElement extends AbstractContentElementController
 				// Redirect or reload the page
 				$_SESSION['voting'][$this->obj->id] = $GLOBALS['TL_LANG']['MSC']['votingSubmitted'];
 
-				$this->redirect($template->action);
+				$template->reload();
 			}
 		}
 
@@ -262,18 +263,18 @@ class VotingIncludeElement extends AbstractContentElementController
 		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
 		if ($this->obj->protected && $tokenChecker->hasFrontendUser())
             $objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE member=? AND ".
-					    "tstamp >? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
+					    "tstamp > ? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
             			(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
             			->limit(1)
             			->execute(FrontendUser::getInstance()->id, $intExpires, $this->obj->id);
         else
     		$objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE ip=? AND ".
-					    "tstamp >? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
+					    "tstamp > ? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
     					(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
     					->limit(1)
     					->execute(Environment::get('ip'), $intExpires, $this->obj->id);
 
-		// User has already votingd
+		// User has already voted
 		if ($objvoting->numRows)
 			return true;
 

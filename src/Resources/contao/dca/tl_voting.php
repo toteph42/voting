@@ -99,8 +99,8 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 
 	'palettes' => [
 		'default'                     => '{title_legend},title,showtitle,type,votingInterval,voteMax,protected,'.
-										 'featured,active_behaviorNotvotingd,active_behaviorvotingd,'.
-										 'inactive_behaviorNotvotingd,inactive_behaviorvotingd;{redirect_legend:hide},'.
+										 'featured,active_behaviornotvoted,active_behaviorvoting,'.
+										 'inactive_behaviornotvoted,inactive_behaviorvoting;{redirect_legend:hide},'.
 										 'jumpTo;{publish_legend},published,closed,activeStart,activeStop,'.
 										 'showStart,showStop'
 	],
@@ -176,43 +176,43 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 			'eval'                    => [ 'tl_class' => 'w50' ],
 			'sql'                     => "char(1) NOT null default ''"
 		],
-		'active_behaviorNotvotingd' => [
-			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviorNotvotingd'],
+		'active_behaviornotvoted' => [
+			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviornotvoted'],
  			'default'                 => 'opt1',
  			'exclude'                 => true,
 			'inputType'               => 'select',
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
-			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorNotvotingd'],
+			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviornotvoting'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
 			'sql'                     => "varchar(4) NOT null default ''"
 		],
-		'active_behaviorvotingd' => [
-			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviorvotingd'],
+		'active_behaviorvoting' => [
+			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['active_behaviorvoting'],
 			'default'                 => 'opt1',
 			'exclude'                 => true,
 			'inputType'               => 'select',
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
-			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvotingd'],
+			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvoting'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
 			'sql'                     => "varchar(4) NOT null default ''"
  		],
-		'inactive_behaviorNotvotingd' => [
-			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviorNotvotingd'],
+		'inactive_behaviornotvoted' => [
+			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviornotvoted'],
  			'default'                 => 'opt1',
  			'exclude'                 => true,
 			'inputType'               => 'select',
  			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
-			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorNotvotingd'],
+			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviornotvoting'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
 			'sql'                     => "varchar(4) NOT null default ''"
 		],
-		'inactive_behaviorvotingd' => [
-			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviorvotingd'],
+		'inactive_behaviorvoting' => [
+			'label'                   => &$GLOBALS['TL_LANG']['tl_voting']['inactive_behaviorvoting'],
 			'default'                 => 'opt1',
 			'exclude'                 => true,
 			'inputType'               => 'select',
 			'options'                 => [ 'opt1', 'opt2', 'opt3' ],
-			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvotingd'],
+			'reference'               => &$GLOBALS['TL_LANG']['tl_voting']['behaviorvoting'],
 			'eval'                    => [ 'tl_class' => 'w50' ],
 			'sql'                     => "varchar(4) NOT null default ''"
 		],
@@ -318,8 +318,8 @@ class tl_voting extends Backend
 	 */
 	public function toggleFeatured(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().
-								 ", featured='".$visible."' WHERE id=?")->execute($id);
+		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().", featured='".$visible.
+					"' WHERE id=?")->execute($id);
 	}
 
 	/**
@@ -347,8 +347,8 @@ class tl_voting extends Backend
 	 */
 	public function toggleVisibility(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().
-								 ", published='".$visible."' WHERE id=?")->execute($id);
+		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().", published='".$visible.
+				"' WHERE id=?")->execute($id);
 	}
 
 }

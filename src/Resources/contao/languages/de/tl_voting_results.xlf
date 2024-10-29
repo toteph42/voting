@@ -10,7 +10,7 @@
   <file datatype="php" original="src/Resources/contao/languages/en/tl_voting_results.php" source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_voting_results.tstamp">
-        <source>Date votingd</source>
+        <source>Date voted</source>
         <target>Datum der Stimme</target>
       </trans-unit>
       <trans-unit id="tl_voting_results.ip">
