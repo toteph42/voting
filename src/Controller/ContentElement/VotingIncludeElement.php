@@ -64,6 +64,8 @@ class VotingIncludeElement extends AbstractContentElementController
 			$template->showResults = $show;
 			$template->showForm = false;
 
+			$template->requestToken = System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue();
+
 			$tokenChecker = System::getContainer()->get('contao.security.token_checker');
 
 			// display a "login to voting" message
