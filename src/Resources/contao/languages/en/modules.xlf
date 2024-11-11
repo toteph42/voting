@@ -7,14 +7,13 @@
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
-  <file datatype="php" original="src/Resources/src/Resources/contao/languages/en/modules.php" source-language="en" target-language="de">
+  <file source-language="en">
     <body>
       <trans-unit id="MOD.voting.0">
         <source>Votings</source>
-        <target>Umfragen</target>
-      </trans-unit>
+       </trans-unit>
       <trans-unit id="MOD.voting.1">
-        <target>Umfragen und deren Optionen verwalten.</target>
+        <source>Manage voting and their options.</source>
       </trans-unit>
     </body>
   </file>

@@ -73,7 +73,7 @@ class VotingIncludeElement extends AbstractContentElementController
 			{
 				$template->cssTyp = 'protected';
 				$template->cssMsg = 'login';
-				$template->message = $GLOBALS['TL_LANG']['MSC']['loginTovoting'];
+				$template->message = $GLOBALS['TL_LANG']['MSC']['loginToVote'];
 			}
 
 			$time = time();

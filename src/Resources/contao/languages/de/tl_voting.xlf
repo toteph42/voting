@@ -7,7 +7,7 @@
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
-  <file datatype="php" original="src/Resources/contao/languages/en/tl_voting.php" source-language="en" target-language="de">
+  <file source-language="en" target-language="de">
     <body>
       <trans-unit id="tl_voting.title.0">
         <source>Title</source>

@@ -7,7 +7,7 @@
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
-  <file datatype="php" original="src/Resources/contao/languages/en/tl_voting_option.php" source-language="en">
+  <file source-language="en">
     <body>
       <trans-unit id="tl_voting_option.title.0">
         <source>Title</source>
@@ -91,7 +91,7 @@
         <source>Reset voting and purge all voting.</source>
       </trans-unit>
       <trans-unit id="tl_voting_option.reset.2">
-        <source>Reset voting and purge all voting', 'Are you sure you want to reset the voting and purge all voting? This cannot be undone!</source>
+        <source>Are you sure you want to reset the voting and purge all voting? This cannot be undone!</source>
       </trans-unit>
     </body>
   </file>

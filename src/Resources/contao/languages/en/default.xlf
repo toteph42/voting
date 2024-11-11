@@ -7,7 +7,7 @@
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
-  <file datatype="php" original="src/Resources/contao/languages/en/default.php" source-language="en">
+  <file source-language="en">
     <body>
       <trans-unit id="MSC.outof">
         <source>out of</source>
@@ -15,7 +15,7 @@
       <trans-unit id="MSC.votes">
         <source>vote(s)</source>
       </trans-unit>
-      <trans-unit id="MSC.loginTovoting">
+      <trans-unit id="MSC.loginToVote">
         <source>Please log in to enable voting.</source>
       </trans-unit>
       <trans-unit id="MSC.voteNow">

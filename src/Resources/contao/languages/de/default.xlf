@@ -7,7 +7,7 @@
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
-  <file datatype="php" original="src/Resources/src/Resources/contao/languages/en/default.php" source-language="en" target-language="de">
+  <file source-language="en" target-language="de">
     <body>
       <trans-unit id="CTE.voting.0">
         <source>Voting</source>
@@ -25,7 +25,7 @@
         <source>vote(s)</source>
         <target>Stimme(n)</target>
       </trans-unit>
-      <trans-unit id="MSC.loginTovoting">
+      <trans-unit id="MSC.loginToVote">
         <source>Please log in to enable voting.</source>
         <target>Bitte loggen Sie sich ein, um abzustimmen zu können.</target>
       </trans-unit>
