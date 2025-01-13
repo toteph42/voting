@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /*
- * 	Voting Bundle
+ * 	This File is part of Toteph42 Voting bundle
  *
- *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -134,6 +134,7 @@ $GLOBALS['TL_DCA']['tl_voting_option'] = [
 	]
 ];
 
+// Provide miscellaneous methods that are used by the data configuration array.
 class tl_voting_option extends Backend
 {
     /**
@@ -145,8 +146,12 @@ class tl_voting_option extends Backend
     	if (Input::get('key') != 'reset')
             $this->redirect($this->getReferer());
 
-        $this->Database->prepare("DELETE FROM tl_voting_results WHERE pid IN (SELECT id FROM ".
-								 "tl_voting_option WHERE pid=?)")->execute(Input::get('id'));
+        $this->Database->prepare(
+        			'DELETE FROM tl_voting_results '.
+        			'WHERE pid IN '.
+        			'(SELECT id '.
+        				'FROM tl_voting_option '.
+        				'WHERE pid=?)')->execute(Input::get('id'));
 
         $this->redirect(str_replace('&key=reset', '', Environment::get('request')));
     }
@@ -156,29 +161,38 @@ class tl_voting_option extends Backend
 	 */
 	public function listVotingOptions(array $arrRow): string
 	{
-		static $Total;
+		static $totalVotes;
 		static $voteMax = 0;
 
 		// Get the total number of votings
-		if ($Total === null)
+		if ($totalVotes === null)
 		{
-			$Total = $this->Database->prepare("SELECT COUNT(*) AS total FROM tl_voting_results WHERE pid IN (SELECT id FROM tl_voting_option WHERE pid=?)")
-									   ->execute($arrRow['pid'])
-									   ->total;
-			$voteMax = $this->Database->prepare("SELECT voteMax FROM tl_voting WHERE id=?")
-									  ->execute($arrRow['pid'])->voteMax;
+			$totalVotes = $this->Database->prepare(
+							'SELECT COUNT(*) AS totalvotes FROM tl_voting_results '.
+							'WHERE pid '.
+							'IN ('.
+								'SELECT id '.
+								'FROM tl_voting_option '.
+								'WHERE pid=?)')->execute($arrRow['pid'])->totalvotes;
+
+			$voteMax = $this->Database->prepare(
+					   	'SELECT voteMax FROM tl_voting '.
+						'WHERE id=?')->execute($arrRow['pid'])->voteMax;
 		}
 
-		$votings = $this->Database->prepare("SELECT COUNT(*) AS total FROM tl_voting_results WHERE pid=?")
-								   ->execute($arrRow['id'])
-								   ->total;
+		// Get votings for this item
+		$votings = $this->Database->prepare(
+					'SELECT SUM(voting_share) AS votings FROM (tl_member, tl_voting_results) '.
+					'WHERE tl_member.id = tl_voting_results.member '.
+					'AND tl_voting_results.pid = ?')->execute($arrRow['id'])->votings;
 
-		$width = $Total ? (round(($votings / $Total), 2) * 200) : 0;
+		$width = $totalVotes ? (round(($votings / $totalVotes), 2) * 200) : 0;
 	    if (!$voteMax)
 	    {
-			$width = $Total ? (round(($votings / $Total), 2) * 200) : 0;
-			$prcnt = $Total ? (round(($votings / $Total), 2) * 100) : 0;
-	    } else
+			$width = $totalVotes ? (round(($votings / $totalVotes), 2) * 200) : 0;
+			$prcnt = $totalVotes ? (round(($votings / $totalVotes), 2) * 100) : 0;
+	    }
+	    else
 	    {
 			$width = $voteMax ? (round(($votings / $voteMax), 2) * 200) : 0;
 			$prcnt = $voteMax ? (round(($votings / $voteMax), 2) * 100) : 0;
@@ -188,8 +202,7 @@ class tl_voting_option extends Backend
 				'14px;line-height:14px;text-align:right;width:'.($width + 30).'px;">'.
 				'<span style="color:#ffffff;font-size:10px;margin-right:4px;">'.$prcnt.
 				' %</span></div>' . $arrRow['title'] . ' <span style="padding-left:3px;color:#b3b3b3;">['.
-				sprintf(($votings == 1 ? $GLOBALS['TL_LANG']['tl_voting_option']['votingSingle'] :
-				$GLOBALS['TL_LANG']['tl_voting_option']['votingPlural']), $votings).
+				sprintf($GLOBALS['TL_LANG']['tl_voting_option']['votings'], $votings).
 			    ($voteMax ? ' '.$GLOBALS['TL_LANG']['MSC']['outof'].' '.$voteMax.' '.
 			   	$GLOBALS['TL_LANG']['MSC']['votes'] : '').']</span></div>';
 	}
@@ -219,8 +232,11 @@ class tl_voting_option extends Backend
 	 */
 	public function toggleVisibility(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting_option SET tstamp=".time().", published='".$visible.
-				"' WHERE id=?")->execute($id);
+		$this->Database->prepare(
+					'UPDATE tl_voting_option '.
+					'SET tstamp = '.time().', '.
+						'published = \''.$visible.'\' '.
+					'WHERE id = ?')->execute($id);
 	}
 
 }

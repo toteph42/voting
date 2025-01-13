@@ -1,0 +1,30 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <!--
+ 
+  	This File is part of Toteph42 Voting bundle
+ 
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
+  	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+
+  -->
+ <file datatype="php" original="contao/languages/en/tl_member.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="tl_member.voting_share.0">
+       <source>Voting share</source>
+       <target>Anteile bei Abstimmungen</target>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_share.1">
+       <source>Define how many shares should be counted, when user is voting (defaults to 1).</source>
+       <target>Geben Sie an, wie wiele Anteile bei Abstimmungen für diesen Benutzer hinzugerechnet werden sollen (Standard ist 1).</target>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_alias.0">
+        <source>Voting alias</source>
+        <target>Abstimmungsnamen</target>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_alias.1">
+        <source>Define alias name for votings.</source>
+        <target>Definieren Sie den Namen, der bei Abstimmungen verwendet werden soll.</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

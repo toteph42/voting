@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -29,13 +29,9 @@
         <source>Title and voting</source>
         <target>Titel und Stimmen</target>
       </trans-unit>
-      <trans-unit id="tl_voting_option.votingSingle">
-        <source>%s voting</source>
-        <target>%s Stimme</target>
-      </trans-unit>
-      <trans-unit id="tl_voting_option.votingPlural">
-        <source>%s vote(s)</source>
-        <target>%s Stimmen</target>
+      <trans-unit id="tl_voting_option.votings">
+        <source>%s voting shares</source>
+        <target>%s Stimmanteile</target>
       </trans-unit>
       <trans-unit id="tl_voting_option.new.0">
         <source>New option</source>
@@ -114,12 +110,12 @@
         <target>Zurücksetzen</target>
       </trans-unit>
       <trans-unit id="tl_voting_option.reset.1">
-        <source>Reset voting and purge all voting.</source>
-        <target>Zurücksetzen und löschen aller Stimmen.</target>
+        <source>Reset voting and purge all voting shares.</source>
+        <target>Zurücksetzen und löschen aller Stimmenanteile.</target>
       </trans-unit>
       <trans-unit id="tl_voting_option.reset.2">
         <source>Are you sure you want to reset the voting and purge all voting? This cannot be undone!</source>
-        <target>Sind Sie sicher die Abstimmungzurück zu setzen und alle Stimmen zu verlieren? Dies kann nicht wieder zurück genommen werden!</target>
+        <target>Sind Sie sicher die Abstimmung zurück zu setzen und alle Stimmen zu verlieren? Dies kann nicht wieder zurück genommen werden!</target>
       </trans-unit>
     </body>
   </file>

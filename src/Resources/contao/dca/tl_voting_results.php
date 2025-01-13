@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /*
- * 	Voting Bundle
+ * 	This File is part of Toteph42 Voting bundle
  *
- *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -110,6 +110,7 @@ $GLOBALS['TL_DCA']['tl_voting_results'] = [
 	]
 ];
 
+// Provide miscellaneous methods that are used by the data configuration array.
 class tl_voting_results extends Backend
 {
 	/**
@@ -118,7 +119,9 @@ class tl_voting_results extends Backend
 	public function filterItemsByParent(): void
 	{
 		$GLOBALS['TL_DCA']['tl_voting_results']['list']['sorting']['root'] =
-				$this->Database->prepare("SELECT id FROM tl_voting_results WHERE pid=?")->execute(Input::get('id'))->fetchEach('id');
+				$this->Database->prepare(
+						'SELECT id FROM tl_voting_results '.
+						'WHERE pid = ?')->execute(Input::get('id'))->fetchEach('id');
 	}
 
 	/**
@@ -128,13 +131,14 @@ class tl_voting_results extends Backend
 	{
 		if ($row['member'])
 		{
-			$objMember = $this->Database->prepare("SELECT * FROM tl_member WHERE id=?")
-										->execute($row['member']);
+			$obj = $this->Database->prepare(
+						'SELECT * FROM tl_member '.
+						'WHERE id = ?')->execute($row['member']);
 
-			if ($objMember->numRows)
-				$args[2] = '<a href="contao/main.php?do=member&act=show&id='.$row['member'].'&rt='.
+			if ($obj->numRows)
+				$args[2] = '<a href="contao?do=member&act=show&id='.$row['member'].'&rt='.
 							System::getContainer()->get('contao.csrf.token_manager')->getDefaultTokenValue().
-							'">'.$objMember->username.' (ID '.$row['member'].')</a>';
+							'">'.($obj->voting_alias ? $obj->voting_alias : $obj->username).' (ID '.$row['member'].')</a>';
 		}
 
 		return $args;

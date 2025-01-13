@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /*
- * 	Voting Bundle
+ * 	This File is part of Toteph42 Voting bundle
  *
- *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -279,6 +279,7 @@ $GLOBALS['TL_DCA']['tl_voting'] = [
 	]
 ];
 
+// Provide miscellaneous methods that are used by the data configuration array.
 class tl_voting extends Backend
 {
 	/**
@@ -318,8 +319,11 @@ class tl_voting extends Backend
 	 */
 	public function toggleFeatured(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().", featured='".$visible.
-					"' WHERE id=?")->execute($id);
+		$this->Database->prepare(
+							'UPDATE tl_voting '.
+							'SET tstamp = '.time().', '.
+							'featured = \''.$visible.'\' '.
+							'WHERE id = ?')->execute($id);
 	}
 
 	/**
@@ -347,8 +351,11 @@ class tl_voting extends Backend
 	 */
 	public function toggleVisibility(int $id, ?string $visible): void
 	{
-		$this->Database->prepare("UPDATE tl_voting SET tstamp=".time().", published='".$visible.
-				"' WHERE id=?")->execute($id);
+		$this->Database->prepare(
+							'UPDATE tl_voting '.
+							'SET tstamp = '.time().', '.
+							'published = \''.$visible.'\' '.
+							'WHERE id = ?')->execute($id);
 	}
 
 }

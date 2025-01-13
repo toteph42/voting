@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /*
- * 	Voting Bundle
+ * 	This File is part of Toteph42 Voting bundle
  *
- *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -228,17 +228,32 @@ class VotingIncludeElement extends AbstractContentElementController
 				// Set the cookie
 				Input::setCookie($this->Cookie.$this->obj->id, $time, ($time + (365 * 86400)));
 
-	            // Store the voting
+				// Delete existing votings
+				$this->db->prepare(
+							'DELETE FROM tl_voting_results '.
+							'WHERE id IN ('.
+								'SELECT id FROM tl_voting_results '.
+								'WHERE pid IN '.
+								'(SELECT id FROM tl_voting_option '.
+									'WHERE pid = ?) '.
+								'AND member IN '.
+									'(SELECT id FROM tl_member '.
+										'WHERE voting_alias = '.
+											'(SELECT voting_alias FROM tl_member '.
+												'WHERE id = ?)))')
+							->execute($this->obj->id, FrontendUser::getInstance()->id);
+
+				// Store the voting
 	            foreach ($arrValues as $value)
 	            {
 	    			$arrSet = [
 	    				'pid' 		=> $value,
 	    				'tstamp' 	=> $time,
 	    				'ip' 		=> Environment::get('ip'),
-	    				'member' 	=> $tokenChecker->hasFrontendUser() ? FrontendUser::getInstance()->id : 0
+	    				'member' 	=> $tokenChecker->hasFrontendUser() ? FrontendUser::getInstance()->id : 0,
 	    			];
 
-	    			Database::getInstance()->prepare("INSERT INTO tl_voting_results %s")->set($arrSet)->execute();
+	    			$this->db->prepare('INSERT INTO tl_voting_results %s')->set($arrSet)->execute();
 	            }
 
 				// Redirect or reload the page
@@ -251,28 +266,46 @@ class VotingIncludeElement extends AbstractContentElementController
 		return $template->getResponse();
     }
 
+    /**
+     * Check if user has already voted within time window
+     */
 	public function hasVoted(): bool
 	{
 
-		$intExpires = $this->obj->votingInterval ? (time() - $this->obj->votingInterval) : 0;
+		$expire = $this->obj->votingInterval ? (time() - $this->obj->votingInterval) : 0;
 
 		// Check the cookie
-		if (Input::cookie($this->Cookie.$this->obj->id) > $intExpires)
+		if (Input::cookie($this->Cookie.$this->obj->id) > $expire)
 			return true;
 
 		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
 		if ($this->obj->protected && $tokenChecker->hasFrontendUser())
-            $objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE member=? AND ".
-					    "tstamp > ? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
-            			(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
-            			->limit(1)
-            			->execute(FrontendUser::getInstance()->id, $intExpires, $this->obj->id);
-        else
-    		$objvoting = $this->db->prepare("SELECT * FROM tl_voting_results WHERE ip=? AND ".
-					    "tstamp > ? AND pid IN (SELECT id FROM tl_voting_option WHERE pid=?".
-    					(!$tokenChecker->hasBackendUser() ? " AND published=1" : "").") ORDER BY tstamp DESC")
-    					->limit(1)
-    					->execute(Environment::get('ip'), $intExpires, $this->obj->id);
+		{
+			$x = 1;
+		    $objvoting = $this->db->prepare(
+            				'SELECT * '.
+            				'FROM tl_voting_results '.
+            				'WHERE member = ? '.
+            				'AND tstamp > ? '.
+            				'AND pid IN '.
+            					'(SELECT id '.
+            					'FROM tl_voting_option '.
+            					'WHERE pid = ? '.(!$tokenChecker->hasBackendUser() ? 'AND published = 1' : '').') '.
+            					'ORDER BY tstamp DESC')->limit(1)->execute(FrontendUser::getInstance()->id, $expire, $this->obj->id);
+		} else {
+			$x = $this->obj->protected;
+			$x = $tokenChecker->hasFrontendUser();
+			$objvoting = $this->db->prepare(
+    						'SELECT * '.
+    						'FROM tl_voting_results '.
+    						'WHERE ip = ? '.
+    						'AND tstamp > ? '.
+    						'AND pid IN '.
+    							'(SELECT id '.
+								'FROM tl_voting_option '.
+    							'WHERE pid = ? '.(!$tokenChecker->hasBackendUser() ? 'AND published = 1' : '').') '.
+    							'ORDER BY tstamp DESC')->limit(1)->execute(Environment::get('ip'), $expire, $this->obj->id);
+		}
 
 		// User has already voted
 		if ($objvoting->numRows)
@@ -321,18 +354,25 @@ class VotingIncludeElement extends AbstractContentElementController
 	protected function getVotingQuery(string $strTable): string
 	{
 
-		$tokenChecker = System::getContainer()->get('contao.security.token_checker');
+		$chk = System::getContainer()->get('contao.security.token_checker');
         switch ($strTable)
         {
 		case 'tl_voting':
-			$strQuery = "SELECT *, (SELECT COUNT(*) FROM tl_voting_option WHERE pid=tl_voting.id) AS ".
-						"options FROM tl_voting WHERE id=?" . (!$tokenChecker->hasBackendUser() ? " AND published=1" : "");
+			$strQuery = 'SELECT *, (SELECT COUNT(*) FROM tl_voting_option '.
+						'WHERE pid=tl_voting.id) AS options '.
+						'FROM tl_voting '.
+						'WHERE id = ?'.($chk->hasFrontendUser() ? ' AND published = 1' : '');
 			break;
 
 		case 'tl_voting_option':
-			$strQuery = "SELECT *, (SELECT COUNT(*) FROM tl_voting_results WHERE pid=tl_voting_option.id) AS ".
-						"voting FROM tl_voting_option WHERE pid=?" . (!$tokenChecker->hasBackendUser() ? " AND published=1" : "").
-						" ORDER BY sorting";
+			$strQuery = 'SELECT *, '.
+						'(SELECT SUM(voting_share) FROM (tl_member, tl_voting_results) '.
+							'WHERE tl_member.id = tl_voting_results.member '.
+							'AND pid = tl_voting_option.id) '.
+							'AS voting '.
+						'FROM tl_voting_option '.
+							'WHERE pid = ? '.($chk->hasFrontendUser() ? 'AND published = 1 ' : '').
+							'ORDER BY sorting';
 			break;
 		}
 

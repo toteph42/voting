@@ -6,48 +6,73 @@
 
 This bundle is based on [contao-polls](https://github.com/codefog/contao-polls). It is sligthly modified,
 a couple on bug fixes were applied and the whole bundle is made compatible with the developer rules defined for
-[Contao 4.13](https://contao.org/de/).
+[Contao 5.3 LTS](https://contao.org/de/).
+
+## Installation
+
+#### Via composer
+```
+composer require toteph42/voting
+```
+
+#### Via contao-manager
+```
+Search for voing bundle and add it to your extensions.
+```
+
+After installing the contao-member-extension-bundle, you need to run a **contao install**.
 
 ## Setup a voting request
 
+In member section of Contao you may specify two additional configuration parameters:
+
+<img src="images/voting9.png" width="80%" height="60%" />
+
+
+- The first **Voting shares** has a default set to 1. This means on each voting this user has a voting share of 1. 
+You may modify this parameter to e.g. 20.7 (or any other number).
+- The second parameter is the **Voting alias**. This defaults to nothing. In this case the users name is taken. If you want to add multiple user 
+which will take part in a voting and you want them to share the **Voting share** then you may specify a **Voting alias** e.g. `Group01`.
+
 To setup a new vote request go to the `Voting` (in `CONTENT` tab)
 
-![](images/voting1.png)
+<img src="images/voting1.png" />
+
 
 Then you can create a new record using the `New voting` button. The voting configuration form has many 
 options, but they are prefilled with the ready-to-use values.
 
-<img src="images/voting2.png" width="60%" height="60%" />
+<img src="images/voting2.png" width="60%" height="50%" />
 
 Next important thing is the behavior configuration. Here you have to set how the vooting behaves after user 
 has or has not voted. The most optimal behavior has been set as the default, but you can adjust it to your needs anytime.
 
-![](images/voting3.png)
+<img src="images/voting3.png" width="80%" height="70%" />
 
 Once you are done with the voting configuration, you have to create the voting options. Each option has the 
 percentage bar displaying the current amount of the voting, if you have not sepcified a `Max. number of votes`. 
 You can also view and manage the voting using the `voting` button in every row.
 
-<img src="images/voting5.png" width="100%" height="100%" />
+<img src="images/voting5.png" width="80%" height="70%" />
 
 ## Publish on the website
 
 When the voting is ready, you can put it on the website as content element. You can either choose the voting manually or let the script find the most current one (based on voting settings).
 
-![](images/voting5.png)
+<img src="images/voting5.png" width="80%" height="70%" />
 
 On your web sute it will look like
 
-![](images/voting8.png)
+<img src="images/voting8.png" width="50%" height="40%" />
 
 On the web site you (and in back end) you will see the results (the provided `bundles/voting/style/voting.css` is
 base on the [ODD Theme](https://contao-themes.net/theme-detail/odd.html). If you want to customize your `CSS` setting please create a new file `_custom.ss` in same directory.
 
-![](images/voting6.png)
+<img src="images/voting6.png" width="50%" height="40%" />
 
 If you have specifies `Max. number of votes` then you will see a sligthly different screen.
 
-![](images/voting7.png)
+<img src="images/voting7.png" width="50%" height="40%" />
 
 ## Reset the poll
 

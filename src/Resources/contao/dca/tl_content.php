@@ -2,9 +2,9 @@
 declare(strict_types=1);
 
 /*
- * 	Voting Bundle
+ * 	This File is part of Toteph42 Voting bundle
  *
- *	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) Florian Daeumling, Germany. All right reserved
  * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
  */
 
@@ -20,9 +20,7 @@ $GLOBALS['TL_DCA']['tl_content']['palettes'][VotingIncludeElement::TYPE] = '
 	{protected_legend:hide},protected;
 	{expert_legend:hide},guests,cssID,space';
 
-/**
- * Add a field to tl_content
- */
+// Add a field to tl_content
 $GLOBALS['TL_DCA']['tl_content']['fields']['voting'] = [
 	'label'                   => &$GLOBALS['TL_LANG']['tl_content']['voting'],
 	'exclude'                 => true,
@@ -40,9 +38,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['voting_current'] = [
 	'sql'                     => "char(1) NOT null default ''"
 ];
 
-/**
- * Provide miscellaneous methods that are used by the data configuration array.
- */
+// Provide miscellaneous methods that are used by the data configuration array.
 class tl_content_voting extends Backend
 {
 
@@ -53,7 +49,9 @@ class tl_content_voting extends Backend
 	{
 		$arr = [];
 
-		$obj= $this->Database->execute("SELECT id, title FROM tl_voting ORDER BY title");
+		$obj= $this->Database->execute(
+					'SELECT id, title FROM tl_voting '.
+						'ORDER BY title');
 
 		while ($obj->next())
 			$arr[$obj->id] = $obj->title;

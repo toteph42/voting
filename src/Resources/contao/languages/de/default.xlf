@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -22,12 +22,12 @@
         <target>von</target>
       </trans-unit>
       <trans-unit id="MSC.votes">
-        <source>vote(s)</source>
-        <target>Stimme(n)</target>
+        <source>voting shares</source>
+        <target>Stimmanteilen</target>
       </trans-unit>
       <trans-unit id="MSC.loginToVote">
         <source>Please log in to enable voting.</source>
-        <target>Bitte loggen Sie sich ein, um abzustimmen zu können.</target>
+        <target>Bitte melden Sie sich ein, um abzustimmen.</target>
       </trans-unit>
       <trans-unit id="MSC.voteNow">
         <source>Vote now</source>

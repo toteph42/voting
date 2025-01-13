@@ -1,0 +1,26 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <!--
+ 
+  	This File is part of Toteph42 Voting bundle
+ 
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
+  	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+
+  -->
+  <file datatype="php" original="contao/languages/en/tl_member.php" source-language="en">
+    <body>
+      <trans-unit id="tl_member.voting_share.0">
+        <source>Voting share</source>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_share.1">
+        <source>Define how many shares should be counted, when user is voting (defaults to 1).</source>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_alias.0">
+        <source>Voting alias</source>
+      </trans-unit>
+      <trans-unit id="tl_member.voting_alias.1">
+        <source>Define alias name for votings.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -24,11 +24,8 @@
       <trans-unit id="tl_voting_option.title_legend">
         <source>Title and voting</source>
       </trans-unit>
-      <trans-unit id="tl_voting_option.votingSingle">
-        <source>%s voting</source>
-      </trans-unit>
-      <trans-unit id="tl_voting_option.votingPlural">
-        <source>%s vote(s)</source>
+      <trans-unit id="tl_voting_option.votings">
+        <source>%s voting shares</source>
       </trans-unit>
       <trans-unit id="tl_voting_option.new.0">
         <source>New option</source>
@@ -88,7 +85,7 @@
         <source>Reset voting</source>
       </trans-unit>
       <trans-unit id="tl_voting_option.reset.1">
-        <source>Reset voting and purge all voting.</source>
+        <source>Reset voting and purge all voting shares.</source>
       </trans-unit>
       <trans-unit id="tl_voting_option.reset.2">
         <source>Are you sure you want to reset the voting and purge all voting? This cannot be undone!</source>

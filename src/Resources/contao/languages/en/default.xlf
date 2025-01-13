@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -13,7 +13,7 @@
         <source>out of</source>
       </trans-unit>
       <trans-unit id="MSC.votes">
-        <source>vote(s)</source>
+        <source>voting shares</source>
       </trans-unit>
       <trans-unit id="MSC.loginToVote">
         <source>Please log in to enable voting.</source>

@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -38,16 +38,16 @@
         <target>Interval der Abstimmung</target>
       </trans-unit>
       <trans-unit id="tl_voting.votingInterval.1">
-        <source>Here you can set the time value in seconds before a user can voting again. Set to 0 if voting can be made only once.</source>
-        <target>Hier können Sie in Sekunden angeben, wann der Benutzer erneut abstimmen kann. Setzen Sie eine 0, wenn nur einmalig abgestimmt werden darf.</target>
+        <source>Here you can set the time value in seconds before a user can vote again. Set to 0 if voting can be made only once. If user is voting again, his previous voting will automatically be deleted.</source>
+        <target>Hier können Sie in Sekunden angeben, wann der Benutzer erneut abstimmen kann. Setzen Sie eine 0, wenn nur einmalig abgestimmt werden darf. Wenn der Benutzer erenut abstimmt, so wird automatisch seine vorherige Wahl gelöscht.</target>
       </trans-unit>
       <trans-unit id="tl_voting.voteMax.0">
-        <source>Max. number of allowed votes</source>
-        <target>Max. Anzahl erlaubter Stimmen</target>
+        <source>Number of allowed voting shares</source>
+        <target>Anzahl erlaubter Stimmanteile</target>
       </trans-unit>
       <trans-unit id="tl_voting.voteMax.1">
         <source>If you specify a value (>0), then this is 100%.</source>
-        <target>Wenn Sie einen Wert hier angeben (>0), dann entspricht dies 100%.</target>
+        <target>Wenn Sie hier einen Wert angeben (>0), dann entspricht dies 100%.</target>
       </trans-unit>
       <trans-unit id="tl_voting.protected.0">
         <source>Protected voting</source>
@@ -55,7 +55,7 @@
       </trans-unit>
       <trans-unit id="tl_voting.protected.1">
         <source>Only the logged in users will be able to voting.</source>
-        <target>Nur eingeloggte Benutzer dürfen abstimmen.</target>
+        <target>Nur angemeldete Benutzer dürfen abstimmen.</target>
       </trans-unit>
       <trans-unit id="tl_voting.featured.0">
         <source>Feature voting</source>

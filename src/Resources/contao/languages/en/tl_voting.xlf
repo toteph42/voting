@@ -1,9 +1,9 @@
 <?xml version="1.0" ?><xliff version="1.1">
   <!--
  
-  	Voting Bundle
+  	This File is part of Toteph42 Voting bundle
  
- 	@copyright	(c) 2023 - 2024 Florian Daeumling, Germany. All right reserved
+ 	@copyright	(c) Florian Daeumling, Germany. All right reserved
   	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
 
   -->
@@ -31,10 +31,10 @@
         <source>voting interval</source>
       </trans-unit>
       <trans-unit id="tl_voting.votingInterval.1">
-        <source>Here you can set the time value in seconds before a user can voting again. Set to 0 if voting can be made only once.</source>
+        <source>Here you can set the time value in seconds before a user can vote again. Set to 0 if voting can be made only once. If user is voting again, his previous voting will automatically be deleted.</source>
       </trans-unit>
       <trans-unit id="tl_voting.voteMax.0">
-        <source>Max. number of allowed votes</source>
+        <source>Number of allowed voting shares</source>
       </trans-unit>
       <trans-unit id="tl_voting.voteMax.1">
         <source>If you specify a value (>0), then this is 100%.</source>
