@@ -201,7 +201,7 @@ class tl_voting_option extends Backend
 		return '<div><div style="display:inline-block;margin-right:8px;background-color:#8AB858;height:'.
 				'14px;line-height:14px;text-align:right;width:'.($width + 30).'px;">'.
 				'<span style="color:#ffffff;font-size:10px;margin-right:4px;">'.$prcnt.
-				' %</span></div>' . $arrRow['title'] . ' <span style="padding-left:3px;color:#b3b3b3;">['.
+				' %</span></div>'.$arrRow['title'].' <span style="padding-left:3px;color:#b3b3b3;">['.
 				sprintf($GLOBALS['TL_LANG']['tl_voting_option']['votings'], $votings).
 			    ($voteMax ? ' '.$GLOBALS['TL_LANG']['MSC']['outof'].' '.$voteMax.' '.
 			   	$GLOBALS['TL_LANG']['MSC']['votes'] : '').']</span></div>';

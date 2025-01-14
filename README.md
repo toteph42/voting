@@ -33,6 +33,8 @@ In member section of Contao you may specify two additional configuration paramet
 You may modify this parameter to e.g. 20.7 (or any other number).
 - The second parameter is the **Voting alias**. This defaults to nothing. In this case the users name is taken. If you want to add multiple user 
 which will take part in a voting and you want them to share the **Voting share** then you may specify a **Voting alias** e.g. `Group01`.
+- These option are usefull, if you have e.g. a homeowners association, where each homeowner has a different voting share 
+or you have an appartment ownned by more than one owner. 
 
 To setup a new vote request go to the `Voting` (in `CONTENT` tab)
 

@@ -321,9 +321,9 @@ class tl_voting extends Backend
 	{
 		$this->Database->prepare(
 							'UPDATE tl_voting '.
-							'SET tstamp = '.time().', '.
-							'featured = \''.$visible.'\' '.
-							'WHERE id = ?')->execute($id);
+								'SET tstamp = '.time().', '.
+								'featured = \''.$visible.'\' '.
+								'WHERE id = ?')->execute($id);
 	}
 
 	/**
@@ -353,9 +353,9 @@ class tl_voting extends Backend
 	{
 		$this->Database->prepare(
 							'UPDATE tl_voting '.
-							'SET tstamp = '.time().', '.
-							'published = \''.$visible.'\' '.
-							'WHERE id = ?')->execute($id);
+								'SET tstamp = '.time().', '.
+								'published = \''.$visible.'\' '.
+								'WHERE id = ?')->execute($id);
 	}
 
 }

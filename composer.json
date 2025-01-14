@@ -19,7 +19,11 @@
 		"polls",
 		"vote",
 		"voting",
-		"contao"
+		"contao",
+		"hausverwaltung",
+		"abstimmung",
+		"umlaufbeschluss",
+		"terminfindung"
 	],
 	"require" : {
 		"php" : ">=7.0",

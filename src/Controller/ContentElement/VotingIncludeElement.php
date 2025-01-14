@@ -102,7 +102,8 @@ class VotingIncludeElement extends AbstractContentElementController
 				$template->message = $_SESSION['voting'][$this->obj->id];
 				unset($_SESSION['voting'][$this->obj->id]);
 
-			}
+			} else
+				$blnJustvoted = true;
 
 			$template->hasVoted = $voting = $this->hasVoted();
 
@@ -118,32 +119,34 @@ class VotingIncludeElement extends AbstractContentElementController
 				($this->obj->inactive_behaviorvoting == 'opt1' && (!Input::get('voting') || Input::get('voting') != $this->obj->id)))))
 				$show = true;
 
-			$Options = $this->db->prepare($this->getVotingQuery('tl_voting_option'))->execute($this->obj->id);
+			$opts = $this->db->prepare($this->getVotingQuery('tl_voting_option'))->execute($this->obj->id);
 
 			// Display results under certain circumstances
 			if ($show)
 			{
 				$arrResults = [];
-				$voting = array_sum($Options->fetchEach('voting'));
-				$Options->reset();
+				$allvotes = array_sum($opts->fetchEach('voting'));
+				$opts->reset();
 
 				System::loadLanguageFile('tl_voting_option');
 
 				// Generate results
-				while ($Options->next())
+				while ($opts->next())
 				{
+					if ($opts->voting === null)
+						$opts->voting = 0;
+
 					if (!$this->obj->voteMax)
 						$arrResults[] = [
-							'title'   	=> $Options->title,
-							'voting' 	=> sprintf($Options->voting > 1 ? $GLOBALS['TL_LANG']['tl_voting_option']['votingPlural'] :
-										   $GLOBALS['TL_LANG']['tl_voting_option']['votingPlural'], $Options->voting),
-							'prcnt'   	=> ($voting > 0) ? (round(($Options->voting / $voting), 2) * 100) : 0,
+							'title'   	=> $opts->title,
+							'voting' 	=> sprintf($GLOBALS['TL_LANG']['tl_voting_option']['votings'], $opts->voting),
+							'prcnt'   	=> ($allvotes > 0) ? (round(($opts->voting / $allvotes), 2) * 100) : 0,
 						];
 					else
 						$arrResults[] = [
-							'title' 	=> $Options->title,
-							'prcnt' 	=> ($voting > 0) ? (round(($Options->voting / $this->obj->voteMax), 2) * 100) : 0,
-							'outof'		=> $Options->voting.' '.$GLOBALS['TL_LANG']['MSC']['outof'].' '.
+							'title' 	=> $opts->title,
+							'prcnt' 	=> ($allvotes > 0) ? (round(($opts->voting / $this->obj->voteMax), 2) * 100) : 0,
+							'outof'		=> $opts->voting.' '.$GLOBALS['TL_LANG']['MSC']['outof'].' '.
 									       $this->obj->voteMax.' '.$GLOBALS['TL_LANG']['MSC']['votes'],
 						];
 				}
@@ -166,8 +169,8 @@ class VotingIncludeElement extends AbstractContentElementController
 			$arrOptions = [];
 
 			// Generate options
-			while ($Options->next())
-				$arrOptions[$Options->id] = $Options->title;
+			while ($opts->next())
+				$arrOptions[$opts->id] = $opts->title;
 
 			// Options form field
 			$arrField = [
@@ -230,17 +233,11 @@ class VotingIncludeElement extends AbstractContentElementController
 
 				// Delete existing votings
 				$this->db->prepare(
-							'DELETE FROM tl_voting_results '.
-							'WHERE id IN ('.
-								'SELECT id FROM tl_voting_results '.
-								'WHERE pid IN '.
-								'(SELECT id FROM tl_voting_option '.
-									'WHERE pid = ?) '.
-								'AND member IN '.
-									'(SELECT id FROM tl_member '.
-										'WHERE voting_alias = '.
-											'(SELECT voting_alias FROM tl_member '.
-												'WHERE id = ?)))')
+							'DELETE vr FROM tl_voting_results vr '.
+							'JOIN tl_voting_option vo ON vr.pid = vo.id '.
+							'JOIN tl_member m ON vr.member = m.id '.
+							'JOIN tl_member m2 ON m.voting_alias = m2.voting_alias '.
+							'WHERE vo.pid = ? AND m2.id = ?')
 							->execute($this->obj->id, FrontendUser::getInstance()->id);
 
 				// Store the voting
