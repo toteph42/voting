@@ -5,7 +5,7 @@ declare(strict_types=1);
  * 	This File is part of Toteph42 This File is part of Toteph42 Voting bundle
  *
  *	@copyright	(c) 2024 Florian Daeumling, Germany. All right reserved
- * 	@license 	https://github.com/toteph42/voting/blob/master/LICENSE
+ * 	@license 	https://www.gnu.org/licenses/gpl-3.0.en.html
  */
 
 use Contao\CoreBundle\DataContainer\PaletteManipulator;

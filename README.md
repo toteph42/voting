@@ -80,7 +80,11 @@ If you have specifies `Max. number of votes` then you will see a sligthly differ
 
 After all tests you can easily reset all votings using the `Reset voting` button at the top of the page:
 
-Please enjoy!
+### License ###
+
+This software is released under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
+## Donation ##
 
 If you enjoy my software, I would be happy to receive a donation.
 

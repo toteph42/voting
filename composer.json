@@ -2,18 +2,8 @@
 	"name" : "toteph42/voting",
 	"type" : "contao-bundle",
 	"description" : "Create polls and votings for Contao Open Source CMS",
-	"license" : "GPL-3.0+",
 	"homepage" : "https://github.com/toteph42/voting",
-	"authors" : [{
-			"name" : "Florian Daeumling",
-			"homepage" : "https://github.com/toteph42",
-			"role" : "Developer"
-		}, {
-			"name" : "Codefog",
-			"homepage" : "http://codefog.pl",
-			"role" : "Developer"
-		}
-	],
+	"license" : "https://www.gnu.org/licenses/gpl-3.0.en.html",
 	"keywords" : [
 		"poll",
 		"polls",
@@ -25,6 +15,24 @@
 		"umlaufbeschluss",
 		"terminfindung"
 	],
+	"authors" : [{
+			"name" : "Florian Daeumling",
+			"role" : "Author"
+		}, {
+			"name" : "Codefog",
+			"homepage" : "http://codefog.pl",
+			"role" : "Developer"
+		}
+	],
+	"funding" : [{
+			"type" : "other",
+			"url" : "https://www.paypal.com/donate/?hosted_button_id=DS6VK49NAFHEQ"
+		}
+	],
+	"support" : {
+		"issues" : "https://github.com/toteph42/voting/issues",
+		"email" : "toteph42@wb28.de"
+	},
 	"require" : {
 		"php" : ">=7.0",
 		"contao/core-bundle" : ">=4.9.0"
@@ -39,10 +47,5 @@
 	},
 	"extra" : {
 		"contao-manager-plugin" : "Toteph42\\VotingBundle\\ContaoManager\\Plugin"
-	},
-	"support" : {
-		"issues" : "https://github.com/toteph42/voting/issues",
-		"source" : "https://github.com/toteph42/voting",
-		"docs" : "https://github.com/toteph42/voting"
 	}
 }
