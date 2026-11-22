@@ -3,7 +3,7 @@
 	"type" : "contao-bundle",
 	"description" : "Create polls and votings for Contao Open Source CMS",
 	"homepage" : "https://github.com/toteph42/voting",
-	"license" : "https://www.gnu.org/licenses/gpl-3.0.en.html",
+	"license" : "GPL-3.0-or-later",
 	"keywords" : [
 		"poll",
 		"polls",
@@ -17,7 +17,8 @@
 	],
 	"authors" : [{
 			"name" : "Florian Daeumling",
-			"role" : "Author"
+			"role" : "Author",
+			"email" : "toteph42@wb28.de"
 		}, {
 			"name" : "Codefog",
 			"homepage" : "http://codefog.pl",
@@ -30,8 +31,7 @@
 		}
 	],
 	"support" : {
-		"issues" : "https://github.com/toteph42/voting/issues",
-		"email" : "toteph42@wb28.de"
+		"issues" : "https://github.com/toteph42/voting/issues"
 	},
 	"require" : {
 		"php" : ">=7.0",
